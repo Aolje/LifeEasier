@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title> Tus ingresos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding color="success">
+  <ion-label>Nombre:</ion-label>
+  <ion-input type="text" placeholder="Nombre del ingreso" [(ngModel)]="nombre"></ion-input>
+  <ion-label>Cantidad:</ion-label>
+  <ion-input type="number" placeholder="Dinero a ingresar" [(ngModel)]="valIngreso"></ion-input>
+  <ion-button (click)="regisIngresos()">
+    Registrar
+  </ion-button>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="arrow-dropleft"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-button><ion-label>Ingresos</ion-label><ion-icon name="add"></ion-icon></ion-button>
+      <ion-button><ion-label>Recordatorio</ion-label><ion-icon name="add"></ion-icon></ion-button>
+      <ion-fab-button><ion-icon name="clock"></ion-icon></ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+</ion-content>

@@ -1,0 +1,22 @@
+
+<ion-content padding color="dark">
+  <ion-list id="lista-login">
+    <img src="assets/img/logo.png" >
+    <ion-item id="item-login">
+      <ion-input id="input-login" type="email" placeholder="Email" [(ngModel)]="email">
+        <ion-icon name="contact"></ion-icon>
+      </ion-input>
+    </ion-item>
+    <ion-item id="item-login">
+      <ion-input id="input-login" type="password" placeholder="Contraseña" [(ngModel)]="password">
+        <ion-icon name="key"></ion-icon>
+      </ion-input>
+    </ion-item>
+    <ion-button id="button-login" color="success" (click)="irPaginaHome()">
+        <!-- <ion-spinner name="bubbles"></ion-spinner> -->
+        Entrar</ion-button>
+        <ion-button id="button2-login" color="primary" (click)="irPaginaRegistro()">Registrarme</ion-button>
+        <ion-button id="button2-login" color="warning" (click)="onClick()">Olvide mi contraseña</ion-button>
+        <!-- <img src="assets/img/icon-money.png" alt="">  -->
+  </ion-list>  
+</ion-content>

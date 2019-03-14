@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>registrate</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding color="dark">
+  <ion-text>
+    <h1 style="color:#39C523;">Registrate a life$easier.</h1>
+    <p>Completa el formulario y podras disfrutar de life$easier</p>
+  </ion-text>
+  <ion-label>Usuario:</ion-label>
+  <ion-input class="inputs-register" type="text" placeholder="Escribe tu usuario" aria-required="true"
+  [(ngModel)]="user"></ion-input>
+  <ion-label>Contraseña:</ion-label>
+  <ion-input class="inputs-register" type="password" placeholder="Escribe tu contraseña" required 
+  [(ngModel)]="password"></ion-input>
+  <ion-label>Confirmar contraseña:</ion-label>
+  <ion-input class="inputs-register" type="password" placeholder="Repite tu contraseña" required="true"
+  [(ngModel)]="password2"></ion-input>
+  <ion-label>Correo electronico:</ion-label>
+  <ion-input class="inputs-register" type="email" placeholder="Escribe tu correo electronico" required="true"
+  [(ngModel)]="email"></ion-input>
+
+  <ion-text color="primary">
+    <p>
+      <ion-checkbox aria-required="true"></ion-checkbox> Acepto condiciones...
+    </p>
+  </ion-text>
+  <div>
+    <ion-button (click)="crear()" expand="full">
+      <ion-icon name="cloudy"></ion-icon>
+      Registrarme
+    </ion-button>
+  </div>
+</ion-content>

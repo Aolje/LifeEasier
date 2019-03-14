@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>gastos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding >
+  <ion-label>Nombre:</ion-label>
+  <ion-input type="text" placeholder="Nombre del ingreso" [(ngModel)]="nombreGasto"></ion-input>
+  <ion-label>Cantidad:</ion-label>
+  <ion-input type="number" placeholder="Dinero a ingresar" [(ngModel)]="valorGasto"></ion-input>
+  <ion-label>Tipo de gasto:</ion-label>
+  <ion-item>
+    <ion-label>Tipo de gasto</ion-label>
+    <ion-select  value="Seleccione un tipo de gasto." okText="Aceptar" cancelText="Cancelar" [(ngModel)]="tipoGasto">
+      <ion-select-option value="Efectivo">Efectivo</ion-select-option>
+      <ion-select-option value="Electronico">Electronico</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-label>Url:</ion-label>
+  <ion-input type="text" placeholder="Pagina web" [(ngModel)]="url"></ion-input>
+  <ion-button (click)="regisGasto()">
+    Registrar
+  </ion-button>
+  <!-- fab placed to the top end
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab> -->
+</ion-content>
