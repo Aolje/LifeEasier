@@ -8,7 +8,40 @@ import { ToastController } from "@ionic/angular";
 })
 export class FBservicesService {
   usuarioUid: string;
-
+  public listI: any[] = [];
+  public prueba = [
+    {
+      nombre: "Uno",
+      valor: 1000
+    },
+    {
+      nombre: "Dos",
+      valor: 2000
+    },
+    {
+      nombre: "Tres",
+      valor: 30000
+    },
+    {
+      nombre: "Cuatro",
+      valor: 40
+    },
+    {
+      nombre: "Cinco",
+      valor: 555
+    },
+    {
+      nombre: "Seis",
+      valor: 606000
+    },
+    {
+      nombre: "Siete",
+      valor: 70700
+    }
+  ];
+  val;
+  public totalIngreso = 0;
+  
   config = {
     apiKey: "AIzaSyC_L6v7n92EEAvwJaEww1N6UcEO0hDDt0E",
     authDomain: "tienda-4a591.firebaseapp.com",
@@ -155,7 +188,7 @@ export class FBservicesService {
         descripcion: descripcionGE
       });
   }
-  cerrarSesion(){
+  cerrarSesion() {
     firebase.auth().signOut();
   }
   verificarsesion() {
@@ -169,5 +202,28 @@ export class FBservicesService {
         this.router.navigate(["login"]);
       }
     });
+  }
+
+  mostrarTotalIngresos() {
+    this.usuarioUid = firebase.auth().currentUser.uid;
+    firebase
+      .database()
+      .ref("usuarios/" + this.usuarioUid + "/ingresos/cosa")
+      .once("value")
+      .then(snapshot => {
+        this.listI = snapshot.val();
+        console.log(this.usuarioUid);
+        // console.log(listaIngresos);
+      });
+  }
+  
+  //Metodo para sumar todos los ingresos del documento
+  sumarI() {
+    this.prueba.forEach(element => {
+      this.val = element.valor;
+      this.totalIngreso = this.totalIngreso + this.val;
+      console.log(this.totalIngreso);
+    });
+    return this.totalIngreso;
   }
 }

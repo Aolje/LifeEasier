@@ -20,6 +20,9 @@ export class GastosPage {
       this.tipoGasto,
       this.url
     );
+    this.valorGasto = "";
+    this.nombreGasto = "";
+    this.tipoGasto = "";
+    this.url = "";
   }
-  
 }
