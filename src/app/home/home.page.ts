@@ -14,7 +14,7 @@ export class HomePage {
   
 
   constructor (private menu:MenuController,private router: Router, public FB:FBservicesService){
-   this.mostrarTotalI = this.FB.sumarI();
+   
   }
   irIngresos(){
     this.router.navigate(["ingresos"]);

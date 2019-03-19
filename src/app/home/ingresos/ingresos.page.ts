@@ -1,6 +1,5 @@
 import { Component } from "@angular/core";
 import { FBservicesService } from "src/app/fbservices.service";
-import * as firebase from "firebase";
 
 @Component({
   selector: "app-ingresos",
@@ -15,7 +14,7 @@ export class IngresosPage {
   usuarioUid: string;
 
   constructor(private FB: FBservicesService) {
-    this.mostrarTI = this.FB.sumarI();
+    this.mostrarTI = this.FB.mostrarTotalIngresos();
   }
 
   regisIngresos() {
@@ -24,11 +23,11 @@ export class IngresosPage {
     this.valIngreso = "";
   }
   
-  getTodos() {
-    this.FB.mostrarTotalIngresos();
-    this.listaIngresosL = this.FB.listI;
-    console.log("FB: ", this.FB.listI);
-    console.log("ingresos.ts: ", this.listaIngresosL);
-    return this.listaIngresosL;
-  }
+  // getTodos() {
+  //   this.FB.mostrarTotalIngresos();
+  //   this.listaIngresosL = this.FB.listI;
+  //   console.log("FB: ", this.FB.listI);
+  //   console.log("ingresos.ts: ", this.listaIngresosL);
+  //   return this.listaIngresosL;
+  // }
 }

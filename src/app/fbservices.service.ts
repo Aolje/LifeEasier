@@ -39,9 +39,9 @@ export class FBservicesService {
       valor: 70700
     }
   ];
-  val;
+  valorT;
   public totalIngreso = 0;
-  
+
   config = {
     apiKey: "AIzaSyC_L6v7n92EEAvwJaEww1N6UcEO0hDDt0E",
     authDomain: "tienda-4a591.firebaseapp.com",
@@ -208,22 +208,27 @@ export class FBservicesService {
     this.usuarioUid = firebase.auth().currentUser.uid;
     firebase
       .database()
-      .ref("usuarios/" + this.usuarioUid + "/ingresos/cosa")
+      .ref("usuarios/" + this.usuarioUid + "/ingresos")
       .once("value")
       .then(snapshot => {
-        this.listI = snapshot.val();
+        this.listI = [];
+        snapshot.forEach(element => {
+          this.listI.push(element.val());
+          this.valorT.push();
+        });
         console.log(this.usuarioUid);
-        // console.log(listaIngresos);
+        console.log(this.listI);
       });
+    return this.listI;
   }
-  
+
   //Metodo para sumar todos los ingresos del documento
-  sumarI() {
-    this.prueba.forEach(element => {
-      this.val = element.valor;
-      this.totalIngreso = this.totalIngreso + this.val;
-      console.log(this.totalIngreso);
-    });
-    return this.totalIngreso;
-  }
+  // sumarI() {
+  //   this.prueba.forEach(element => {
+  //     this.val = element.valor;
+  //     this.totalIngreso = this.totalIngreso + this.val;
+  //     console.log(this.totalIngreso);
+  //   });
+  //   return this.totalIngreso;
+  // }
 }
