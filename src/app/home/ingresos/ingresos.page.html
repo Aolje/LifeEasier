@@ -8,16 +8,17 @@
 </ion-header>
 
 <ion-content padding color="success">
+  <ion-label>AQUI MI TOTAL: {{suma}} </ion-label>
+  <br>
   <ion-label>Nombre:</ion-label>
   <ion-input type="text" placeholder="Nombre del ingreso" [(ngModel)]="nombre"></ion-input>
   <ion-label>Cantidad:</ion-label>
   <ion-input type="number" placeholder="Dinero a ingresar" [(ngModel)]="valIngreso"></ion-input>
   <ion-button (click)="regisIngresos()">Registrar</ion-button>
-  <ion-card *ngFor="let lista of mostrarTI">
+  <ion-card *ngFor="let lista of listaIngresosL">
     <ion-card-title>{{lista.nombre}}</ion-card-title>
     <ion-card-title>{{lista.valor}}</ion-card-title>
   </ion-card>
-  <ion-label>AQUI MI TOTAL: </ion-label>
 
 
 

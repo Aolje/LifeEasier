@@ -39,8 +39,9 @@ export class FBservicesService {
       valor: 70700
     }
   ];
-  valorT;
-  public totalIngreso = 0;
+  valorT: any[] = [];
+  public totalIngreso;
+  val;
 
   config = {
     apiKey: "AIzaSyC_L6v7n92EEAvwJaEww1N6UcEO0hDDt0E",
@@ -104,6 +105,7 @@ export class FBservicesService {
     } else {
       this.toastContras();
     }
+    this.router.navigate(["login"]);
   }
 
   async toastContras() {
@@ -192,9 +194,10 @@ export class FBservicesService {
     firebase.auth().signOut();
   }
   verificarsesion() {
+ 
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        console.log("Sesion activa");
+        console.log("Sesion activa por ----> ", this.usuarioUid);
         console.log("Puede ir a home");
         this.router.navigate(["home"]);
       } else {
@@ -204,31 +207,34 @@ export class FBservicesService {
     });
   }
 
-  mostrarTotalIngresos() {
+  mostrarTotalIngresos() {    
     this.usuarioUid = firebase.auth().currentUser.uid;
     firebase
       .database()
       .ref("usuarios/" + this.usuarioUid + "/ingresos")
       .once("value")
       .then(snapshot => {
-        this.listI = [];
         snapshot.forEach(element => {
           this.listI.push(element.val());
           this.valorT.push();
         });
-        console.log(this.usuarioUid);
-        console.log(this.listI);
+        console.log("Desde FB usuario es: ", this.usuarioUid);
+        console.log("Desde FB: ", this.listI);
       });
     return this.listI;
   }
-
+  
   //Metodo para sumar todos los ingresos del documento
-  // sumarI() {
-  //   this.prueba.forEach(element => {
-  //     this.val = element.valor;
-  //     this.totalIngreso = this.totalIngreso + this.val;
-  //     console.log(this.totalIngreso);
-  //   });
-  //   return this.totalIngreso;
-  // }
+  sumarI() {
+       
+    this.totalIngreso = 0;    
+    for (let index = 0; index < this.mostrarTotalIngresos().length; index++) {
+      const element = this.mostrarTotalIngresos()[index].valor;
+      this.val = element;
+      this.totalIngreso = this.totalIngreso + this.val;
+      console.log("IMPRIME VALOR DEL NODO --->", element);
+      console.log(this.totalIngreso);
+    }
+    return this.totalIngreso;
+  }
 }

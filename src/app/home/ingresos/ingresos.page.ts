@@ -9,12 +9,13 @@ import { FBservicesService } from "src/app/fbservices.service";
 export class IngresosPage {
   nombre;
   valIngreso;
-  mostrarTI;
-  listaIngresosL: any[] = [];
+  suma;
+  listaIngresosL = [];
   usuarioUid: string;
 
   constructor(private FB: FBservicesService) {
-    this.mostrarTI = this.FB.mostrarTotalIngresos();
+    this.listaIngresosL = this.FB.mostrarTotalIngresos();
+    this.suma = this.FB.sumarI();
   }
 
   regisIngresos() {
@@ -22,12 +23,4 @@ export class IngresosPage {
     this.nombre = "";
     this.valIngreso = "";
   }
-  
-  // getTodos() {
-  //   this.FB.mostrarTotalIngresos();
-  //   this.listaIngresosL = this.FB.listI;
-  //   console.log("FB: ", this.FB.listI);
-  //   console.log("ingresos.ts: ", this.listaIngresosL);
-  //   return this.listaIngresosL;
-  // }
 }

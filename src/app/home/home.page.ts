@@ -11,10 +11,14 @@ import { FBservicesService} from '../fbservices.service';
 export class HomePage {
   valorIngreso;
   mostrarTotalI;
-  
+  sumaI;
+  sumaE;
+  sumaIE;
+  sumaEE;
 
   constructor (private menu:MenuController,private router: Router, public FB:FBservicesService){
-   
+    this.FB.verificarsesion();
+    this.sumaI = this.FB.sumarI();
   }
   irIngresos(){
     this.router.navigate(["ingresos"]);
