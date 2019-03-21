@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import * as firebase from "firebase";
 import { ToastController } from "@ionic/angular";
+import { startTimeRange } from "@angular/core/src/profile/wtf_impl";
 
 @Injectable({
   providedIn: "root"
@@ -197,6 +198,22 @@ export class FBservicesService {
       }
     });
   }
+  mostrarTodosRealTime() {
+    this.usuarioUid = firebase.auth().currentUser.uid;
+    firebase
+      .database()
+      .ref("usuarios/" + this.usuarioUid + "/ingresos")
+      .on("value", snapshot => {
+        this.listI = [];
+        this.valorT = [];
+        snapshot.forEach(element => {
+          this.listI.push(element.val());
+          this.valorT.push();
+        });
+        console.log("realtime Data base ", this.listI);
+      });
+    return this.listI;
+  }
 
   mostrarTotalIngresos() {
     this.usuarioUid = firebase.auth().currentUser.uid;
@@ -217,15 +234,14 @@ export class FBservicesService {
     return this.listI;
   }
 
-  //Metodo para sumar todos los ingresos del documento
+  // Metodo para sumar todos los ingresos del documento
   sumarI() {
     this.totalIngreso = 0;
-    for (let index = 0; index < this.mostrarTotalIngresos().length; index++) {
-      const element = this.mostrarTotalIngresos()[index].valor;
+    for (let index = 0; index < this.mostrarTodosRealTime().length; index++) {
+      const element = this.mostrarTodosRealTime()[index].valor;
       this.val = element;
       this.totalIngreso = this.totalIngreso + this.val;
     }
-
     console.log("IMPRIME VALOR DEL total ---> ", this.totalIngreso);
     return this.totalIngreso;
   }

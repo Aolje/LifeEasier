@@ -17,13 +17,16 @@ export class IngresosPage {
   };
 
   constructor(private FB: FBservicesService) {
-    this.listaIngresosL = this.FB.mostrarTotalIngresos();
+    this.listaIngresosL = this.FB.mostrarTodosRealTime();
+    console.log("Desde ingresos ListaIngresoL----",this.listaIngresosL);
     this.suma = this.FB.sumarI();
+    console.log("Desde ingresos la suma----------",this.suma);
   }
 
   regisIngresos() {
     this.FB.crearIngreso(this.valIngreso, this.nombre);
     this.nombre = "";
     this.valIngreso = "";
+    this.FB.mostrarTodosRealTime();
   }
 }

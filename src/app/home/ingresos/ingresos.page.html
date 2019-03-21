@@ -15,7 +15,7 @@
   <ion-label>Cantidad:</ion-label>
   <ion-input type="number" placeholder="Dinero a ingresar" [(ngModel)]="valIngreso"></ion-input>
   <ion-button (click)="regisIngresos()">Registrar</ion-button>
-  <ion-slides pager="true" [options]="slideOpts">
+  <ion-slides pager="true" [options]="slideOpts" class="sli">
     <ion-slide class="slide" *ngFor="let lista of listaIngresosL">
       <ion-card class="slide-card">
         <ion-card-title>{{lista.nombre}}</ion-card-title>

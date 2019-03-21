@@ -17,6 +17,7 @@ export class HomePage {
   sumaEE;
 
   constructor (private menu:MenuController,private router: Router, public FB:FBservicesService){
+    this.FB.mostrarTodosRealTime();
     this.sumaI = this.FB.sumarI();
     console.log('total ----- ' , this.sumaI);
 

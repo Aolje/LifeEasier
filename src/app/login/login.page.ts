@@ -24,6 +24,7 @@ export class LoginPage {
 
   irPaginaRegistro() {
     this.router.navigate(["registrar"]);
+    this.FB.mostrarTodosRealTime();
   }
   irPaginaHome(email, password) {
     this.FB.iniciarSesion(this.email, this.password);
