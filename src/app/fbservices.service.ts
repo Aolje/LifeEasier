@@ -92,14 +92,6 @@ export class FBservicesService {
             });
         });
       this.toastRegistroCorrecto().catch(error => {
-        // Handle Errors here.
-        // var errorCode = error.code;
-        // var errorMessage = error.message;
-        // if (errorCode == 'auth/weak-password') {
-        //   alert('The password is too weak.');
-        // } else {
-        //   alert(errorMessage);
-        // }
         console.log(error);
       });
     } else {
@@ -152,6 +144,7 @@ export class FBservicesService {
       });
     this.toastConfirmarDataIngresada();
   }
+
   crearGasto(valorGasto, nombreGasto, tipoGasto, url) {
     this.usuarioUid = firebase.auth().currentUser.uid;
     console.log(this.usuarioUid);
@@ -194,26 +187,26 @@ export class FBservicesService {
     firebase.auth().signOut();
   }
   verificarsesion() {
- 
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        console.log("Sesion activa por ----> ", this.usuarioUid);
-        console.log("Puede ir a home");
+        console.log("Ya hay una sesion activa, puede ir a home. °u° ");
         this.router.navigate(["home"]);
       } else {
-        console.log("Sesion cerrada"), console.log("No puede ir a home");
+        console.log("No hay sesion, toca loguear");
         this.router.navigate(["login"]);
       }
     });
   }
 
-  mostrarTotalIngresos() {    
+  mostrarTotalIngresos() {
     this.usuarioUid = firebase.auth().currentUser.uid;
     firebase
       .database()
       .ref("usuarios/" + this.usuarioUid + "/ingresos")
       .once("value")
       .then(snapshot => {
+        this.listI = [];
+        this.valorT = [];
         snapshot.forEach(element => {
           this.listI.push(element.val());
           this.valorT.push();
@@ -223,18 +216,17 @@ export class FBservicesService {
       });
     return this.listI;
   }
-  
+
   //Metodo para sumar todos los ingresos del documento
   sumarI() {
-       
-    this.totalIngreso = 0;    
+    this.totalIngreso = 0;
     for (let index = 0; index < this.mostrarTotalIngresos().length; index++) {
       const element = this.mostrarTotalIngresos()[index].valor;
       this.val = element;
       this.totalIngreso = this.totalIngreso + this.val;
-      console.log("IMPRIME VALOR DEL NODO --->", element);
-      console.log(this.totalIngreso);
     }
+
+    console.log("IMPRIME VALOR DEL total ---> ", this.totalIngreso);
     return this.totalIngreso;
   }
 }

@@ -17,8 +17,10 @@ export class HomePage {
   sumaEE;
 
   constructor (private menu:MenuController,private router: Router, public FB:FBservicesService){
-    this.FB.verificarsesion();
     this.sumaI = this.FB.sumarI();
+    console.log('total ----- ' , this.sumaI);
+
+    this.FB.verificarsesion();
   }
   irIngresos(){
     this.router.navigate(["ingresos"]);

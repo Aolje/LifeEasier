@@ -12,6 +12,9 @@ export class IngresosPage {
   suma;
   listaIngresosL = [];
   usuarioUid: string;
+  slideOpts = {
+    effect: 'flip'
+  };
 
   constructor(private FB: FBservicesService) {
     this.listaIngresosL = this.FB.mostrarTotalIngresos();
