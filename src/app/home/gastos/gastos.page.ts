@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component} from "@angular/core";
 import { FBservicesService } from "src/app/fbservices.service";
 
 @Component({
@@ -7,6 +7,11 @@ import { FBservicesService } from "src/app/fbservices.service";
   styleUrls: ["./gastos.page.scss"]
 })
 export class GastosPage {
+
+  segmentChanged(ev: any) {
+    console.log('Segment changed', ev);
+  }
+
   constructor(private FB: FBservicesService) {}
   nombreGasto;
   valorGasto;

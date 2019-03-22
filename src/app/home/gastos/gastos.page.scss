@@ -1,10 +1,58 @@
 ion-content {
     --background: #89853c;
     /* Old browsers */
-    --background: -moz-linear-gradient(top, #89853c 2%, #f1da36 81%);
+    --background: -moz-linear-gradient(top, #575314 2%, #948620 81%);
     /* FF3.6-15 */
-    --background: -webkit-linear-gradient(top, #89853c 2%, #f1da36 81%);
+    --background: -webkit-linear-gradient(top, #a79f0e 2%, #948620 81%);
     /* Chrome10-25,Safari5.1-6 */
-    --background: linear-gradient(to bottom, #89853c 2%, #f1da36 81%);
+    --background: linear-gradient(to bottom, #2b2908 2%, #948620 81%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+    ion-segment-button{
+        margin: 10px;
+        border-radius: 10px;
+
+    }
+    ion-segment{
+        margin-bottom: 10px;
+    }
+    .card{
+        padding: 0px;
+        text-align:  center;
+        color: white;
+        background: #292929;
+       
+    }
+    .sli{
+        text-align:  center;
+        padding-bottom:20px; 
+        color: white;
+        background: #292929;
+    }
+    .card h3{
+        color: #ffce00;
+    }
+    #btnRegistrar{
+        
+        margin: 0px;
+        --background: rgba(232, 248, 91, 0.651);
+        color:  rgb(255, 255, 255);
+        width: 100%;
+    }
+    ion-label{
+        color: white;
+        width: 100%;
+    }
+    #titleDinero{
+        font-size: 10vw;
+        text-align: center;
+        text-shadow: 1px 1px #032b13;
+        color: rgb(255, 148, 27);
+    }
+
+    #form-regis-gasto{
+        padding: 10px;
+        color: white;
+        background: #a5a311;
+    }
 }

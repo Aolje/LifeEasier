@@ -15,7 +15,9 @@
     <ion-input type="text" placeholder="Nombre para el ingreso" [(ngModel)]="nombre"></ion-input>
     <ion-label>Cantidad:</ion-label>
     <ion-input type="number" placeholder="Dinero que ingresa" [(ngModel)]="valIngreso"></ion-input>
-    <ion-button id="btnRegistrar" (click)="regisIngresos()">Agregar ingreso <ion-icon slot="start"  name="checkmark-circle-outline">
+    <ion-button id="btnRegistrar" (click)="regisIngresos()">Agregar ingreso 
+      <ion-icon slot="start"
+        name="checkmark-circle-outline">
       </ion-icon>
     </ion-button>
   </ion-card>

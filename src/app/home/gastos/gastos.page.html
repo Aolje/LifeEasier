@@ -7,24 +7,28 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding >
-  <ion-label>Nombre:</ion-label>
-  <ion-input type="text" placeholder="Nombre del ingreso" [(ngModel)]="nombreGasto"></ion-input>
-  <ion-label>Cantidad:</ion-label>
-  <ion-input type="number" placeholder="Dinero a ingresar" [(ngModel)]="valorGasto"></ion-input>
-  <ion-label>Tipo de gasto:</ion-label>
-  <ion-item>
-    <ion-label>Tipo de gasto</ion-label>
-    <ion-select  value="Seleccione un tipo de gasto." okText="Aceptar" cancelText="Cancelar" [(ngModel)]="tipoGasto">
-      <ion-select-option value="Efectivo">Efectivo</ion-select-option>
-      <ion-select-option value="Electronico">Electronico</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-label>Url:</ion-label>
-  <ion-input type="text" placeholder="Pagina web" [(ngModel)]="url"></ion-input>
-  <ion-button (click)="regisGasto()">
-    Registrar
-  </ion-button>
+<ion-content padding>
+  <ion-label>Dinero gastado:</ion-label>
+  <ion-title id="titleDinero">{{5556665| currency:'USD':true: '2.0-0'}}</ion-title>
+  <ion-card id="form-regis-gasto">
+    <ion-label>Nombre:</ion-label>
+    <ion-input type="text" placeholder="Nombre para gasto" [(ngModel)]="nombreGasto"></ion-input>
+    <ion-label>Cantidad:</ion-label>
+    <ion-input type="number" placeholder="Dinero que se gasta" [(ngModel)]="valorGasto"></ion-input>
+    <ion-label>Tipo de gasto:</ion-label>
+    <!-- Default Segment -->
+    <ion-segment (ionChange)="segmentChanged($event)" color="danger" >
+      <ion-segment-button value="efectivo">
+        <ion-label color="danger"> <ion-icon slot="start" name="cash"></ion-icon> Efectivo</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="electronico">
+        <ion-label color="danger"> <ion-icon slot="start" name="laptop"></ion-icon> Electronico</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    <ion-button id="btnRegistrar" (click)="regisGasto()">
+      Añadir gasto
+    </ion-button>
+  </ion-card>
   <!-- fab placed to the top end
   <ion-fab vertical="top" horizontal="end" slot="fixed">
     <ion-fab-button>
