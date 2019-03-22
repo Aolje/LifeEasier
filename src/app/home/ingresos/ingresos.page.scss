@@ -1,15 +1,38 @@
 ion-content{
-    .slide{
-        width: 100%;
-        height: 80%;
-    }
-    .slide-card{
-        background: darkgrey;
-        width:100%;
-        height: 100%;
+    .card{
+        text-align:  center;
+        color: white;
+        background: #292929;
+       
     }
     .sli{
-        height: 50%;
+        text-align:  center;
+        padding-bottom:20px; 
+        color: white;
+        background: #292929;
+    }
+    .card h3{
+        color: #ffce00;
+    }
+    #btnRegistrar{
+        margin: 0px;
+        --background: rgb(0, 66, 17);
+        color:  rgb(255, 255, 255);
         width: 100%;
     }
+    ion-label{
+        width: 100%;
+    }
+    #titleDinero{
+        font-size: 10vw;
+        text-align: center;
+        text-shadow: 1px 1px #032b13;
+        color: rgb(0, 97, 24);
+    }
+    #form-regis-ingreso{
+        padding: 10px;
+        color: white;
+        background: #078b3c;
+    }
 }
+

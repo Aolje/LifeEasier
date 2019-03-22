@@ -8,35 +8,44 @@
 </ion-header>
 
 <ion-content padding color="success">
-  <ion-label>AQUI MI TOTAL: {{suma}} </ion-label>
-  <br>
-  <ion-label>Nombre:</ion-label>
-  <ion-input type="text" placeholder="Nombre del ingreso" [(ngModel)]="nombre"></ion-input>
-  <ion-label>Cantidad:</ion-label>
-  <ion-input type="number" placeholder="Dinero a ingresar" [(ngModel)]="valIngreso"></ion-input>
-  <ion-button (click)="regisIngresos()">Registrar</ion-button>
-  <ion-slides pager="true" [options]="slideOpts" class="sli">
-    <ion-slide class="slide" *ngFor="let lista of listaIngresosL">
-      <ion-card class="slide-card">
-        <ion-card-title>{{lista.nombre}}</ion-card-title>
-        <ion-card-title>{{lista.valor}}</ion-card-title>
+  <ion-label>Dinero disponible:</ion-label>
+  <ion-title id="titleDinero">{{suma| currency:'USD':true: '2.0-0'}}</ion-title>
+  <ion-card id="form-regis-ingreso">
+    <ion-label>Nombre para el ingreso:</ion-label>
+    <ion-input type="text" placeholder="Nombre para el ingreso" [(ngModel)]="nombre"></ion-input>
+    <ion-label>Cantidad:</ion-label>
+    <ion-input type="number" placeholder="Dinero que ingresa" [(ngModel)]="valIngreso"></ion-input>
+    <ion-button id="btnRegistrar" (click)="regisIngresos()">Agregar ingreso <ion-icon slot="start"  name="checkmark-circle-outline">
+      </ion-icon>
+    </ion-button>
+  </ion-card>
+
+  <ion-label>Lista de ingresos:</ion-label>
+
+  <!-- Opción 1 -->
+  <ion-row>
+    <ion-col>
+      <ion-card class="card" *ngFor="let lista of listaIngresosL">
+        <h3>{{lista.nombre}}</h3>
+        <h1>{{lista.valor | currency:'USD':true: '2.0-0'}}</h1>
       </ion-card>
-      <!-- <h1>{{lista.nombre}}</h1> -->
-      <!-- <h2>{{lista.valor | currency:'USD':true: '2.0-0'}}</h2> -->
+    </ion-col>
+  </ion-row>
+
+  <!-- Opción 2 -->
+  <!-- <ion-slides pager="true" [options]="slideOpts" class="sli">
+    <ion-slide class="card" *ngFor="let lista of listaIngresosL">
+      <h3>{{lista.nombre}}</h3>
+      <h1>{{lista.valor | currency:'USD':true: '2.0-0'}}</h1>
     </ion-slide>
-  </ion-slides>
+  </ion-slides> -->
 
 
 
-  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button>
-      <ion-icon name="arrow-dropleft"></ion-icon>
+  <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="presentActionSheet()">
+    <ion-fab-button color="dark">
+      <ion-icon name="apps" color="warning"></ion-icon>
     </ion-fab-button>
-    <ion-fab-list side="top">
-      <ion-button><ion-label>Ingresos</ion-label><ion-icon name="add"></ion-icon></ion-button>
-      <ion-button><ion-label>Recordatorio</ion-label><ion-icon name="add"></ion-icon></ion-button>
-      <ion-fab-button><ion-icon name="clock"></ion-icon></ion-fab-button>
-    </ion-fab-list>
-  </ion-fab> -->
+  </ion-fab>
 
 </ion-content>

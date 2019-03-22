@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>registrarI</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-label>Nombre:</ion-label>
+    <ion-input type="text" placeholder="Nombre del ingreso" [(ngModel)]="nombre"></ion-input>
+    <ion-label>Cantidad:</ion-label>
+    <ion-input type="number" placeholder="Dinero a ingresar" [(ngModel)]="valIngreso"></ion-input>
+    <ion-button id="btnRegistrar" (click)="regisIngresos()">Registrar</ion-button>
+</ion-content>
