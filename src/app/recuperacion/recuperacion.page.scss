@@ -1,0 +1,27 @@
+ion-content{
+    .card{
+        margin: auto;
+        width: 50%;
+    }
+    .card ion-input{
+        color: white;
+        background: grey;
+    }
+    .card ion-label{
+        color: white;
+    }
+    .card p {
+        color: aliceblue;
+    }
+    .card h1{
+        color: rgb(0, 204, 255);
+    }
+    .card{
+        padding: 20px;
+        border: solid 2px aquamarine;
+    }
+    .card ion-button{
+        margin-top: 10px;
+        width: 100%;
+    }
+}

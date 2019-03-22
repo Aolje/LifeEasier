@@ -9,40 +9,19 @@ import { startTimeRange } from "@angular/core/src/profile/wtf_impl";
 })
 export class FBservicesService {
   usuarioUid: string;
+  //Variables para ingresos
   public listI: any[] = [];
-  public prueba = [
-    {
-      nombre: "Uno",
-      valor: 1000
-    },
-    {
-      nombre: "Dos",
-      valor: 2000
-    },
-    {
-      nombre: "Tres",
-      valor: 30000
-    },
-    {
-      nombre: "Cuatro",
-      valor: 40
-    },
-    {
-      nombre: "Cinco",
-      valor: 555
-    },
-    {
-      nombre: "Seis",
-      valor: 606000
-    },
-    {
-      nombre: "Siete",
-      valor: 70700
-    }
-  ];
   valorT: any[] = [];
-  public totalIngreso;
   val;
+  public totalIngreso;
+  //Variables para gastos
+  public listG: any[] = [];
+  valorTG: any[] = [];
+  valG;
+  public totalGasto;
+  
+  // public totalIngreso;
+  // public totalIngreso;
 
   config = {
     apiKey: "AIzaSyC_L6v7n92EEAvwJaEww1N6UcEO0hDDt0E",
@@ -146,7 +125,7 @@ export class FBservicesService {
     this.toastConfirmarDataIngresada();
   }
 
-  crearGasto(valorGasto, nombreGasto, tipoGasto, url) {
+  crearGasto(valorGasto, nombreGasto, tipoGasto) {
     this.usuarioUid = firebase.auth().currentUser.uid;
     console.log(this.usuarioUid);
     firebase
@@ -155,8 +134,7 @@ export class FBservicesService {
       .set({
         nombre: nombreGasto,
         valor: valorGasto,
-        tipo: tipoGasto,
-        url: url
+        tipo: tipoGasto
       });
     this.toastConfirmarDataIngresada();
   }
@@ -210,29 +188,10 @@ export class FBservicesService {
           this.listI.push(element.val());
           this.valorT.push();
         });
-        console.log("realtime Data base ", this.listI);
+        console.log("Tabla Ingresos-->", this.listI);
       });
     return this.listI;
-  }
-
-  mostrarTotalIngresos() {
-    this.usuarioUid = firebase.auth().currentUser.uid;
-    firebase
-      .database()
-      .ref("usuarios/" + this.usuarioUid + "/ingresos")
-      .once("value")
-      .then(snapshot => {
-        this.listI = [];
-        this.valorT = [];
-        snapshot.forEach(element => {
-          this.listI.push(element.val());
-          this.valorT.push();
-        });
-        console.log("Desde FB usuario es: ", this.usuarioUid);
-        console.log("Desde FB: ", this.listI);
-      });
-    return this.listI;
-  }
+  }  
 
   // Metodo para sumar todos los ingresos del documento
   sumarI() {
@@ -242,7 +201,44 @@ export class FBservicesService {
       this.val = element;
       this.totalIngreso = this.totalIngreso + this.val;
     }
-    console.log("IMPRIME VALOR DEL total ---> ", this.totalIngreso);
     return this.totalIngreso;
   }
+
+  mostrarTodoGastos() {
+    this.usuarioUid = firebase.auth().currentUser.uid;
+    firebase
+      .database()
+      .ref("usuarios/" + this.usuarioUid + "/gastos")
+      .on("value", snapshot => {
+        this.listG = [];
+        this.valorT = [];
+        snapshot.forEach(element => {
+          this.listG.push(element.val());
+          this.valorT.push();
+        });
+        console.log("Tabla Gastos-->", this.listG);
+      });
+    return this.listG;
+  }
+  // Metodo para sumar todos los gastos del usuario
+  sumarG() {
+    this.totalGasto = 0;
+    for (let index = 0; index < this.mostrarTodoGastos().length; index++) {
+      const element = this.mostrarTodoGastos()[index].valor;
+      this.valG = element;
+      this.totalGasto = this.totalGasto + this.valG;
+    }
+    return this.totalGasto;
+  }
+
+
+  recuperarClave(correo){
+    var auth = firebase.auth();
+    auth.sendPasswordResetEmail(correo).then(()=> {
+      console.log('correo de recuperacion enviado revise su correo.');
+    }).catch(function(error) {
+    console.log('correo no enviado validar correo', error);
+    });
+    
+    }
 }

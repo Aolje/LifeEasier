@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'gastos', loadChildren: './home/gastos/gastos.module#GastosPageModule' },
   { path: 'ingresos-e', loadChildren: './home/ingresos-e/ingresos-e.module#IngresosEPageModule' },
   { path: 'gastos-e', loadChildren: './home/gastos-e/gastos-e.module#GastosEPageModule' },  { path: 'registrar-i', loadChildren: './home/ingresos/registrar-i/registrar-i.module#RegistrarIPageModule' },
+  { path: 'recuperacion', loadChildren: './recuperacion/recuperacion.module#RecuperacionPageModule' },
 
 
 ];

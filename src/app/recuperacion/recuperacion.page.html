@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/"></ion-back-button>
+        </ion-buttons>
+    <ion-title>recuperacion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding color="dark">
+  <ion-card class="card">
+    <h1>Recuperar contraseña.</h1>
+    <p>Esta vista esta pensada para recuperar la contraseña de su correo electronico registrado en nuestra aplicación
+      Life$easier.</p>
+    <ion-label>Por favor ingrese el correo electronico de la cuenta a recuperar.</ion-label>
+    <ion-input type="email" placeholder="Ingrese el correo" [(ngModel)]="correoRecuperacion"></ion-input>
+    <ion-button (click)="recuperarClave()" color="tertiary">
+      Recuperar
+    </ion-button>
+  </ion-card>
+
+</ion-content>
