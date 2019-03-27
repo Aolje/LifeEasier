@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import * as firebase from "firebase";
-import { ToastController } from "@ionic/angular";
+import { ToastController, AlertController } from "@ionic/angular";
 import { startTimeRange } from "@angular/core/src/profile/wtf_impl";
 
 @Injectable({
@@ -19,7 +19,7 @@ export class FBservicesService {
   valorTG: any[] = [];
   valG;
   public totalGasto;
-  
+
   // public totalIngreso;
   // public totalIngreso;
 
@@ -32,7 +32,11 @@ export class FBservicesService {
     messagingSenderId: "979469927756"
   };
 
-  constructor(private router: Router, public toastController: ToastController) {
+  constructor(
+    private router: Router,
+    public toastController: ToastController,
+    public alertController: AlertController
+  ) {
     firebase.initializeApp(this.config);
     this.verificarsesion();
   }
@@ -191,7 +195,7 @@ export class FBservicesService {
         console.log("Tabla Ingresos-->", this.listI);
       });
     return this.listI;
-  }  
+  }
 
   // Metodo para sumar todos los ingresos del documento
   sumarI() {
@@ -231,14 +235,33 @@ export class FBservicesService {
     return this.totalGasto;
   }
 
-
-  recuperarClave(correo){
+  recuperarClave(correo) {
     var auth = firebase.auth();
-    auth.sendPasswordResetEmail(correo).then(()=> {
-      console.log('correo de recuperacion enviado revise su correo.');
-    }).catch(function(error) {
-    console.log('correo no enviado validar correo', error);
+    auth
+      .sendPasswordResetEmail(correo)
+      .then(() => {
+        this.alertRecuperacion();
+      })
+      .catch(error => {
+        this.toastRecuperacionFail();
+        console.log("correo no enviado validar correo", error);
+      });
+  }
+  async alertRecuperacion() {
+    const alert = await this.alertController.create({
+      header: "Revisa tu correo electronico",
+      message:
+        "Hemos enviado un email de recuperación a tu cuenta de correo electronico.",
+      buttons: ["Vale!"]
     });
-    
-    }
+
+    await alert.present();
+  }
+  async toastRecuperacionFail() {
+    const toast = await this.toastController.create({
+      message: "Por favor revisar el correo electronico ya que no existe en Life$Easier",
+      duration: 7000
+    });
+    toast.present();
+  }
 }
