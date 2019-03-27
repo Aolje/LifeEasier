@@ -1,7 +1,7 @@
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
 import { Component } from "@angular/core";
 import { FBservicesService } from "src/app/fbservices.service";
-import { ActionSheetController, PopoverController } from '@ionic/angular';
+import { ActionSheetController, PopoverController } from "@ionic/angular";
 
 @Component({
   selector: "app-ingresos",
@@ -21,45 +21,49 @@ export class IngresosPage {
 
   //propiedad para el slider
   slideOpts = {
-    effect: 'flip'
+    effect: "flip"
   };
-
 
   constructor(
     private FB: FBservicesService,
     public actionSheetController: ActionSheetController,
     public popoverController: PopoverController,
-    private router: Router) {
+    private router: Router
+  ) {
     this.listaIngresosL = this.FB.mostrarTodosRealTime();
     this.suma = this.FB.sumarI();
   }
 
-
   regisIngresos() {
-    this.FB.crearIngreso(this.valIngreso, this.nombre);
-    this.nombre = "";
-    this.valIngreso = "";
+    if (this.valIngreso < 1  || this.valIngreso == "e"|| this.valIngreso == "E") {
+      this.valIngreso = "";
+      console.log("numero negativo no admitido");
+    }else{
+      this.FB.crearIngreso(this.valIngreso, this.nombre);
+      this.nombre = "";
+      this.valIngreso = "";     
+    }
   }
 
   async presentActionSheet() {
-
     //Controla las opciones que puede hacer en ingresos
     const actionSheet = await this.actionSheetController.create({
-      header: 'Que quieres hacer en ingresos',
-      buttons: [{
-        text: 'Añadir ingreso',
-        icon: 'add'
-      }, {
-        text: 'Cancelar',
-        icon: 'close',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
+      header: "Que quieres hacer en ingresos",
+      buttons: [
+        {
+          text: "Añadir ingreso",
+          icon: "add"
+        },
+        {
+          text: "Cancelar",
+          icon: "close",
+          role: "cancel",
+          handler: () => {
+            console.log("Cancel clicked");
+          }
         }
-      }]
+      ]
     });
     await actionSheet.present();
   }
-
-
 }
