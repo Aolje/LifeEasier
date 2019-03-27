@@ -18,14 +18,22 @@
     <ion-label>Tipo de gasto:</ion-label>
     <!-- Default Segment -->
     <ion-segment (ionChange)="segmentChanged($event)" color="danger" [(ngModel)]="tipoGasto">
-      <ion-segment-button value="efectivo" >
-        <ion-label color="danger"> <ion-icon slot="start" name="cash"></ion-icon> Efectivo</ion-label>
+      <ion-segment-button value="efectivo">
+        <ion-label color="danger">
+          <ion-icon slot="start" name="cash"></ion-icon> Efectivo
+        </ion-label>
       </ion-segment-button>
-      <ion-segment-button value="electronico"  >
-        <ion-label color="danger"> <ion-icon slot="start" name="laptop"></ion-icon> Electronico</ion-label>
+      <ion-segment-button value="electronico">
+        <ion-label color="danger">
+          <ion-icon slot="start" name="laptop"></ion-icon> Electronico
+        </ion-label>
       </ion-segment-button>
     </ion-segment>
-    
+    <ion-item>
+      <ion-label>Periodicidad:</ion-label>
+      <ion-datetime display-format="DDDD MMM D, YYYY" min="2015" max="2020"></ion-datetime>
+    </ion-item>
+
     <ion-button id="btnRegistrar" (click)="regisGasto()">
       Añadir gasto
     </ion-button>

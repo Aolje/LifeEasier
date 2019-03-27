@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import * as firebase from "firebase";
 import { ToastController, AlertController } from "@ionic/angular";
-import { startTimeRange } from "@angular/core/src/profile/wtf_impl";
+import { LocalNotifications } from "@ionic-native/local-notifications/ngx";
 
 @Injectable({
   providedIn: "root"
@@ -23,6 +23,9 @@ export class FBservicesService {
   // public totalIngreso;
   // public totalIngreso;
 
+  fecha: Date;
+  milisegundos = 5000;
+
   config = {
     apiKey: "AIzaSyC_L6v7n92EEAvwJaEww1N6UcEO0hDDt0E",
     authDomain: "tienda-4a591.firebaseapp.com",
@@ -35,7 +38,8 @@ export class FBservicesService {
   constructor(
     private router: Router,
     public toastController: ToastController,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private localNotifications: LocalNotifications
   ) {
     firebase.initializeApp(this.config);
     this.verificarsesion();
@@ -141,7 +145,9 @@ export class FBservicesService {
         tipo: tipoGasto
       });
     this.toastConfirmarDataIngresada();
+    this.registerNotification();
   }
+
   crearIngresoExtra(valorIngresoE, nombreIE, descripcionIE) {
     this.usuarioUid = firebase.auth().currentUser.uid;
     console.log(this.usuarioUid);
@@ -234,7 +240,6 @@ export class FBservicesService {
     }
     return this.totalGasto;
   }
-
   recuperarClave(correo) {
     var auth = firebase.auth();
     auth
@@ -259,9 +264,19 @@ export class FBservicesService {
   }
   async toastRecuperacionFail() {
     const toast = await this.toastController.create({
-      message: "Por favor revisar el correo electronico ya que no existe en Life$Easier",
+      message:
+        "Por favor revisar el correo electronico ya que no existe en Life$Easier",
       duration: 7000
     });
     toast.present();
+  }
+
+  registerNotification() {
+    this.localNotifications.schedule({
+      title: `my ${this.milisegundos} notification`,
+      text: `descripcion pikachu`,
+      trigger: { at: new Date(new Date().getTime() + this.milisegundos) }
+    });
+    
   }
 }
