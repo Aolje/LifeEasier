@@ -1,0 +1,33 @@
+ion-content {
+    ion-title{
+        text-align: center;
+        color: white;
+        font-family: 'Courier New', Courier, monospace;
+        width: 100%;
+        
+    }
+    .contenido{
+        margin-top: 50%;
+    }
+    #form-regis-ingreso {
+        padding: 10px;
+        color: white;
+        background: #078b3c;
+    }
+
+    ion-label {
+        width: 100%;
+    }
+
+    #btnRegistrar {
+        margin: 10px 10px 0 0;
+        --background: rgb(0, 66, 17);
+        color: rgb(255, 255, 255);
+        width: 100%;
+    }
+    #input-ingreso{
+        color: #032b13;
+        --background: #55fa97;
+        border-radius: 5px;
+    }
+}

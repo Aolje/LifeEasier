@@ -9,41 +9,17 @@ import { ActionSheetController, PopoverController } from "@ionic/angular";
   styleUrls: ["./ingresos.page.scss"]
 })
 export class IngresosPage {
-  //variables que se utilizan en el HTML
-  nombre;
-  valIngreso;
-  //variable suma es la suma de los ingresos
-  suma;
-  //Aquí se guarda el array con todos los ingresos
-  listaIngresosL = [];
-  //variable del usuario autenticado
-  usuarioUid: string;
-
-  //propiedad para el slider
-  slideOpts = {
-    effect: "flip"
-  };
+  //propiedad para el slider --- OCULTO----
+  // slideOpts = {
+  //   effect: "flip"
+  // };
 
   constructor(
     private FB: FBservicesService,
     public actionSheetController: ActionSheetController,
     public popoverController: PopoverController,
     private router: Router
-  ) {
-    this.listaIngresosL = this.FB.mostrarTodosRealTime();
-    this.suma = this.FB.sumarI();
-  }
-
-  regisIngresos() {
-    if (this.valIngreso < 1  || this.valIngreso == "e"|| this.valIngreso == "E") {
-      this.valIngreso = "";
-      console.log("numero negativo no admitido");
-    }else{
-      this.FB.crearIngreso(this.valIngreso, this.nombre);
-      this.nombre = "";
-      this.valIngreso = "";     
-    }
-  }
+  ) {}
 
   async presentActionSheet() {
     //Controla las opciones que puede hacer en ingresos
@@ -52,7 +28,16 @@ export class IngresosPage {
       buttons: [
         {
           text: "Añadir ingreso",
-          icon: "add"
+          icon: "add",
+          handler: () => {
+            this.router.navigate(["registrar-i"]);
+          }
+        },{
+          text:"Eliminar ingreso",
+          icon: "remove",
+          handler: () =>{
+            console.log("ME OPRIMISTE PARA ELIMINAR UN INGRESO")
+          }
         },
         {
           text: "Cancelar",

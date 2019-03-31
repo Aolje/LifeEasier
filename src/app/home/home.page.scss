@@ -1,83 +1,109 @@
-.card-divider:hover {
-  color: darkolivegreen;
-}
 
-.card-divider1,
-.card-divider2,
-.card-divider3,
-.card-divider4 {
-  width: 45%;
-  height: 45%;
-  margin: 2.5%;
-  display: inline-block;
-  color: black;
-  background-color: cadetblue;
-  padding: 0;
-  border-radius: 10px;
-  // background-image: url("../../assets/img/icon-money.png");
-  // background-repeat: no-repeat;
-  // background-size: 100%; 
+ion-content{
 
-}
-
-.card-divider1 ion-button,
-.card-divider2 ion-button,
-.card-divider3 ion-button,
-.card-divider4 ion-button {
-  width: 100%;
-  height: 20%;
-  padding: 0;
-  margin: 0;
-}
-
-.card-divider1 {
-  background-color:rgb(153, 221, 176) ;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  background-image: url("/../../assets/img/icon-money.png");
-}
-.card-divider2{
-  background-color: rgb(250, 255, 179);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  background-image: url("/../../assets/img/gastos.jpg");
-}
-.card-divider3{
-  background-color:rgb(181, 216, 252) ;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-image: url("/../../assets/img/iExtra.png");
-}
-.card-divider4{
-  background-color:rgb(255, 187, 187) ;  
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  background-image:url("/../../assets/img/perdida.png");
-}
-
-.saldoIngresos {
-  color: rgb(78, 184, 78);
-  text-shadow: 2px 2px #055326;
-}
-
-.saldoEgresos {
-  color: rgb(214, 218, 21);
-  text-shadow: 2px 2px #596301;
-}
-
-.saldoIngresosExtra {
-  color: rgb(39, 64, 209);
-  text-shadow: 2px 2px #291b77;
-}
-
-.saldoEgresosExtra {
-  color: rgb(212, 44, 44);
-  text-shadow: 2px 2px #682828;
-}
-
-.div-divider {
-  font-size: 7vw;
-  height: 80%;
-  width: 100%;
-  text-align: center;
+  .card-divider:hover {
+    color: darkolivegreen;
+  }
+  
+  .card-divider1,
+  .card-divider2,
+  .card-divider3,
+  .card-divider4 {
+    width: 45%;
+    height: 45%;
+    margin: 2.5%;
+    display: inline-block;
+    color: black;
+    background-color: cadetblue;
+    padding: 0;
+    border-radius: 10px;
+    // background-image: url("../../assets/img/icon-money.png");
+    // background-repeat: no-repeat;
+    // background-size: 100%; 
+    
+  }
+  
+  .card-divider1 ion-button,
+  .card-divider2 ion-button,
+  .card-divider3 ion-button,
+  .card-divider4 ion-button {
+    width: 100%;
+    height: 20%;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .card-divider1 {
+    background-color: rgb(153, 221, 176);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-image: url("/../../assets/img/icon-money.png");
+    border: solid black 3px;
+  }
+  
+  .card-divider2 {
+    background-color: rgb(250, 255, 179);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-image: url("/../../assets/img/perdida.png");
+    border: solid black 3px;
+  
+  }
+  
+  .card-divider3 {
+    background-color: rgb(181, 216, 252);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-image: url("/../../assets/img/iExtra.png");
+  }
+  
+  .card-divider4 {
+    background-color: rgb(255, 187, 187);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-image: url("/../../assets/img/perdida.png");
+  }
+  
+  .saldoIngresos {
+    color: rgb(0, 88, 0);
+    text-shadow: 1px px #000000;
+  }
+  
+  .saldoEgresos {
+    color: rgb(212, 163, 0);
+    text-shadow: 1px 1px #000000;
+  }
+  
+  .saldoIngresosExtra {
+    color: rgb(39, 64, 209);
+    text-shadow: 1px 1px #291b77;
+  }
+  
+  .saldoEgresosExtra {
+    color: rgb(212, 44, 44);
+    text-shadow: 1px 1px #682828;
+  }
+  
+  .div-divider {    
+    margin-top: 40px;
+    font-size: 8vw;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+  }
+  .my-custom-menu {
+    --width: 500px;
+  }
+  #div-divider-total {
+    height: 80%;
+    width: 100%;
+    text-align: center;
+    font-size: 10vw;
+  }
+  
+  .saldoTotal {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #ff6600;
+    text-shadow: 1px 1px #1a1101;
+  }
 }

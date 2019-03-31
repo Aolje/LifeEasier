@@ -11,21 +11,21 @@ import { FBservicesService } from "../fbservices.service";
   styleUrls: ["./login.page.scss"]
 })
 export class LoginPage {
-  email;
-  password;
+  email:string;
+  password:string;
 
   constructor(
     public navCtrl: NavController,
     private router: Router,
     private FB: FBservicesService
   ) {
-    this.FB.verificarsesion();
+    //this.FB.verificarsesion();
   }
 
   irPaginaRegistro() {
     this.router.navigate(["registrar"]);
   }
-  irPaginaHome(email, password) {
+  irPaginaHome() {
     this.FB.iniciarSesion(this.email, this.password);
   }
   recuperarCuenta(){

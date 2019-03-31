@@ -1,13 +1,22 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>registrarI</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content padding>
-    <ion-label>Nombre:</ion-label>
-    <ion-input type="text" placeholder="Nombre del ingreso" [(ngModel)]="nombre"></ion-input>
-    <ion-label>Cantidad:</ion-label>
-    <ion-input type="number" placeholder="Dinero a ingresar" [(ngModel)]="valIngreso"></ion-input>
-    <ion-button id="btnRegistrar" (click)="regisIngresos()">Registrar</ion-button>
+<ion-content color="dark">
+  <!-- tabla registro de ingresos -->
+  <div class="contenido">
+  <ion-title> Crear un ingreso</ion-title>
+  <ion-card id="form-regis-ingreso" >
+    <ion-label>Como quieres llamar a este ingreso:</ion-label>
+    <ion-input id="input-ingreso" type="text" placeholder="Escribe el nombre aquí" [(ngModel)]="nombre"></ion-input>
+    <ion-label>Cuanto dinero es:</ion-label>
+    <ion-input id="input-ingreso" type="number" min="0" placeholder="Escribe la cantidad aquí" [(ngModel)]="valIngreso">
+    </ion-input>
+    <ion-button id="btnRegistrar" (click)="regisIngresos()">Crear ingreso
+      <ion-icon slot="start" name="checkmark-circle-outline">
+      </ion-icon>
+    </ion-button>
+  </ion-card>
+  <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="cerrarCrearIngreso()">
+    <ion-fab-button color="dark">
+      <ion-icon name="close" color="danger"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</div>
 </ion-content>

@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import * as firebase from "firebase";
 import { ToastController, AlertController } from "@ionic/angular";
 import { LocalNotifications } from "@ionic-native/local-notifications/ngx";
+import { Console } from "@angular/core/src/console";
 
 @Injectable({
   providedIn: "root"
@@ -20,8 +21,8 @@ export class FBservicesService {
   valG;
   public totalGasto;
 
-  // public totalIngreso;
-  // public totalIngreso;
+  // Variable usuario
+  usuario: string;
 
   fecha: Date;
   milisegundos = 5000;
@@ -44,23 +45,31 @@ export class FBservicesService {
     firebase.initializeApp(this.config);
     this.verificarsesion();
   }
+  mostrarNombre() {
+    firebase
+      .database()
+      .ref("usuarios/" + this.usuarioUid + "/datosBasicos")
+      .on("value", snapshot => {
+        this.usuario = snapshot.val().usuario;
+        console.log(this.usuario);
+      });
+  }
 
   iniciarSesion(email, password) {
     firebase
       .auth()
-      .signInAndRetrieveDataWithEmailAndPassword(email, password)
+      .signInWithEmailAndPassword(email, password)
       .then(() => {
         console.log("Se inicio correctamente");
         console.log("ususuario:", firebase.auth().currentUser);
         console.log("token ususuario:", firebase.auth().currentUser.uid);
-        this.router.navigate(["home"]);
+        //this.router.navigate(["home"]);
       })
       .catch(error => {
         this.toastErrorAutenticacion();
         console.log(error);
       });
   }
-
   crearUsuario(email, password, user, password2) {
     if (password == password2) {
       firebase
@@ -87,7 +96,6 @@ export class FBservicesService {
     }
     this.router.navigate(["login"]);
   }
-
   async toastContras() {
     const toast = await this.toastController.create({
       message: "Las contraseñas no se parecen",
@@ -95,7 +103,6 @@ export class FBservicesService {
     });
     toast.present();
   }
-
   async toastRegistroCorrecto() {
     const toast = await this.toastController.create({
       message: "Te has registrado correctamente",
@@ -103,7 +110,6 @@ export class FBservicesService {
     });
     toast.present();
   }
-
   async toastErrorAutenticacion() {
     const toast = await this.toastController.create({
       message: "Usuario y/o contraseña incorrectos. Intentelo de nuevo.",
@@ -111,7 +117,6 @@ export class FBservicesService {
     });
     toast.present();
   }
-
   async toastConfirmarDataIngresada() {
     const toast = await this.toastController.create({
       message: "Lo has agregado correctamente.",
@@ -119,7 +124,6 @@ export class FBservicesService {
     });
     toast.present();
   }
-
   crearIngreso(valorIngreso, nombre) {
     this.usuarioUid = firebase.auth().currentUser.uid;
     console.log(this.usuarioUid);
@@ -130,7 +134,6 @@ export class FBservicesService {
         nombre: nombre,
         valor: valorIngreso
       });
-    this.toastConfirmarDataIngresada();
   }
 
   crearGasto(valorGasto, nombreGasto, tipoGasto) {
@@ -147,7 +150,6 @@ export class FBservicesService {
     this.toastConfirmarDataIngresada();
     this.registerNotification();
   }
-
   crearIngresoExtra(valorIngresoE, nombreIE, descripcionIE) {
     this.usuarioUid = firebase.auth().currentUser.uid;
     console.log(this.usuarioUid);
@@ -180,6 +182,11 @@ export class FBservicesService {
       if (user) {
         console.log("Ya hay una sesion activa, puede ir a home. °u° ");
         this.router.navigate(["home"]);
+        this.usuarioUid = firebase.auth().currentUser.uid;
+        this.mostrarNombre();
+        console.log("usuario:", this.usuarioUid);
+        console.log("total --Ingreso--- ", this.mostrarTodosRealTime());
+        console.log("total --Gasto--- ", this.mostrarTodoGastos());
       } else {
         console.log("No hay sesion, toca loguear");
         this.router.navigate(["login"]);
@@ -187,58 +194,47 @@ export class FBservicesService {
     });
   }
   mostrarTodosRealTime() {
-    this.usuarioUid = firebase.auth().currentUser.uid;
     firebase
       .database()
       .ref("usuarios/" + this.usuarioUid + "/ingresos")
       .on("value", snapshot => {
         this.listI = [];
-        this.valorT = [];
         snapshot.forEach(element => {
           this.listI.push(element.val());
-          this.valorT.push();
         });
-        console.log("Tabla Ingresos-->", this.listI);
+        this.sumarI(this.listI);
       });
-    return this.listI;
   }
-
   // Metodo para sumar todos los ingresos del documento
-  sumarI() {
+  sumarI(listaI) {
     this.totalIngreso = 0;
-    for (let index = 0; index < this.mostrarTodosRealTime().length; index++) {
-      const element = this.mostrarTodosRealTime()[index].valor;
+    for (let index = 0; index < listaI.length; index++) {
+      const element = listaI[index].valor;
       this.val = element;
       this.totalIngreso = this.totalIngreso + this.val;
     }
-    return this.totalIngreso;
   }
-
   mostrarTodoGastos() {
-    this.usuarioUid = firebase.auth().currentUser.uid;
+    // this.usuarioUid = firebase.auth().currentUser.uid;
     firebase
       .database()
       .ref("usuarios/" + this.usuarioUid + "/gastos")
       .on("value", snapshot => {
         this.listG = [];
-        this.valorT = [];
         snapshot.forEach(element => {
           this.listG.push(element.val());
-          this.valorT.push();
         });
-        console.log("Tabla Gastos-->", this.listG);
+        this.sumarG(this.listG);
       });
-    return this.listG;
   }
   // Metodo para sumar todos los gastos del usuario
-  sumarG() {
+  sumarG(listG) {
     this.totalGasto = 0;
-    for (let index = 0; index < this.mostrarTodoGastos().length; index++) {
-      const element = this.mostrarTodoGastos()[index].valor;
+    for (let index = 0; index < listG.length; index++) {
+      const element = listG[index].valor;
       this.valG = element;
       this.totalGasto = this.totalGasto + this.valG;
     }
-    return this.totalGasto;
   }
   recuperarClave(correo) {
     var auth = firebase.auth();
@@ -270,13 +266,11 @@ export class FBservicesService {
     });
     toast.present();
   }
-
   registerNotification() {
     this.localNotifications.schedule({
       title: `my ${this.milisegundos} notification`,
       text: `descripcion pikachu`,
       trigger: { at: new Date(new Date().getTime() + this.milisegundos) }
     });
-    
   }
 }

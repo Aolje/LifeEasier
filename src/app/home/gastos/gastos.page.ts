@@ -33,10 +33,7 @@ export class GastosPage {
     private router: Router,
     private localNotifications: LocalNotifications
   ) {
-    this.listaGastosL = this.FB.mostrarTodoGastos();
-    console.log("Desde igastoas la tabla es----", this.listaGastosL);
-    this.suma = this.FB.sumarG();
-    console.log("Desde Gastos la suma----------", this.suma);
+    
   }
   regisGasto() {
     this.FB.crearGasto(this.valorGasto, this.nombreGasto, this.tipoGasto);

@@ -1,43 +1,48 @@
-<ion-header>
+<ion-header color="primary">
   <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Tu dinero</ion-title>
+    <ion-title>Bienvenido {{FB.usuario}}</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content  >
-  <ion-card-content class="card-divider1">
+<ion-content color="light">
+  <ion-card-content>
+    <div class="div-divider-total" id="div-divider-total">
+      <H3>PUEDES GASTAR LIBREMENTE: </H3>
+      <label class="saldoTotal">{{ (FB.totalIngreso-FB.totalGasto) | currency:'USD':true: '2.0-0' }}</label>
+    </div>
+  </ion-card-content>
+  <!-- Card de ingresos -->
+  <ion-card-content class="card-divider1" (click)="irIngresos()">
     <ion-button (click)="irIngresos()" color="success">INGRESOS</ion-button>
     <div class="div-divider" id="div-divider-ingresos">
-      <label class="saldoIngresos">{{ sumaI | currency:'USD':true: '2.0-0' }}</label>
+      <label class="saldoIngresos">{{ FB.totalIngreso | currency:'USD':true: '2.0-0' }}</label>
     </div>
   </ion-card-content>
-  <ion-card-content class="card-divider2">
+  <!-- card de gastos -->
+  <ion-card-content class="card-divider2" (click)="irGastos()">
     <ion-button (click)="irGastos()" color="warning">GASTOS</ion-button>
     <div class="div-divider" id="div-divider-gastos">
-      <label class="saldoEgresos">{{ sumaE | currency:'USD':true: '2.0-0' }}</label>
+      <label class="saldoEgresos">{{ FB.totalGasto | currency:'USD':true: '2.0-0' }}</label>
     </div>
   </ion-card-content>
-
-  <ion-card-content class="card-divider3">
+  <!-- card de ingresos extra -->
+  <!-- <ion-card-content class="card-divider3">
     <ion-button (click)="irIngresosExtra()" color="primary">INGRESOS EXTRA</ion-button>
     <div class="div-divider" id="div-divider-ingresosExtra">
       <label class="saldoIngresosExtra">{{ 260000 | currency:'USD':true: '2.0-0' }}</label>
     </div>
-  </ion-card-content>
-
-  <ion-card-content class="card-divider4">
+  </ion-card-content> -->
+  <!-- card de gastos extra -->
+  <!-- <ion-card-content class="card-divider4">
     <ion-button (click)="irGastosExtra()" color="danger">GASTOS EXTRA</ion-button>
     <div class="div-divider" id="div-divider-gastosExtra">
       <label class="saldoEgresosExtra">{{ 80000 | currency:'USD':true: '2.0-0' }}</label>
     </div>
-  </ion-card-content>
+  </ion-card-content> -->
 </ion-content>
-<ion-footer>
+<ion-footer color="success">
   <ion-toolbar>
-   <ion-button (click)="cerrarSesion()">
-     Cerrar Sesion
-   </ion-button>
+    <ion-button (click)="cerrarSesion()">
+      Cerrar Sesion
+    </ion-button>
   </ion-toolbar>
 </ion-footer>

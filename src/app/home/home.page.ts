@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {MenuController} from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, RouterEvent } from '@angular/router';
 import { FBservicesService} from '../fbservices.service';
 
 @Component({
@@ -15,12 +15,15 @@ export class HomePage {
   sumaE;
   sumaIE;
   sumaEE;
-
+//  pages: [{
+//    title: 'firs page',
+//    url:'/home'
+//  }];
+//  selectedPath = '';
   constructor (private menu:MenuController,private router: Router, public FB:FBservicesService){
-    this.sumaI = this.FB.sumarI();
-    this.sumaE = this.FB.sumarG();
-    console.log('total --I--- ' , this.sumaI);
-    console.log('total --G--- ' , this.sumaE);
+  // this.router.events.subscribe((event:RouterEvent) =>{
+  //   this.selectedPath = event.url;
+  // })   
   }
   irIngresos(){
     this.router.navigate(["ingresos"]);
@@ -30,5 +33,9 @@ export class HomePage {
   }
   cerrarSesion(){
     this.FB.cerrarSesion();
+  }
+  openCustom() {
+    this.menu.enable(true, 'custom');
+    this.menu.open('custom');
   }
 }
