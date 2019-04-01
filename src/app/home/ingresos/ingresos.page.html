@@ -11,11 +11,11 @@
   <ion-label>Tus ingresos son de:</ion-label>
   <ion-title id="titleDinero">{{FB.totalIngreso| currency:'USD':true: '2.0-0'}}</ion-title>
 
-  <ion-label>Lista de ingresos:</ion-label>
+  <ion-label>Lista de ingresos: <ion-badge slot="end" color="medium">{{FB.numeroIngresos}}</ion-badge></ion-label>
   <!-- Opción 1 -->
   <ion-row>
     <ion-col>
-      <ion-card class="card-dinero" *ngFor="let lista of FB.listI">
+      <ion-card class="card-dinero" *ngFor="let lista of FB.listI" (click)="pruebaEliminar(lista.nombre)">
         <h3>{{lista.nombre}}</h3>
         <h1>{{lista.valor | currency:'USD':true: '2.0-0'}}</h1>
       </ion-card>
@@ -32,8 +32,13 @@
 
   <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="presentActionSheet()">
     <ion-fab-button color="dark">
-      <ion-icon name="apps" color="warning"></ion-icon>
+      <ion-icon name="options" color="warning"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+  <ion-fab *ngIf="mostrar" vertical="bottom" horizontal="end" slot="fixed"  (click)="eventoEliminar()">
+      <ion-fab-button color="danger">
+        <ion-icon name="trash" color="light"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
 
 </ion-content>

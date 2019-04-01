@@ -1,0 +1,38 @@
+<ion-content color="dark">
+  
+  <ion-card id="form-regis-gasto">
+    <ion-label id="l1">Dale un nombre al gasto:</ion-label>
+    <ion-input id="input-gasto" type="text" placeholder="Escribe aquí el nombre del gasto." [(ngModel)]="nombreGasto">
+      <ion-icon name="pricetag" color="warning"></ion-icon>
+    </ion-input>
+    <ion-label id="l2"> Dinero a gastar:</ion-label>
+    <ion-input id="input-gasto" type="number" placeholder="Escribe aquí cuanto vas a gastar." [(ngModel)]="valorGasto">
+      <ion-icon name="logo-usd" color="warning"></ion-icon>
+    </ion-input>
+    <ion-label id="l3">El gasto es: <p>(seleccione una opción)</p>
+    </ion-label>
+    <!-- Default Segment -->
+    <ion-segment (ionChange)="segmentChanged($event)" color="danger" [(ngModel)]="tipoGasto">
+      <ion-segment-button value="efectivo">
+        <ion-label color="dark">
+          <ion-icon slot="start" name="cash"></ion-icon> En Efectivo
+        </ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="electronico">
+        <ion-label color="dark">
+          <ion-icon slot="start" name="laptop"></ion-icon> Por internet
+        </ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    <!-- <ion-item>
+      <ion-label>Periodicidad:</ion-label>
+      <ion-datetime display-format="DDDD MMM D, YYYY" min="2015" max="2020"></ion-datetime>
+    </ion-item> -->
+    <ion-button id="btnRegistrar" (click)="regisGasto()">☑ Crear gasto</ion-button>
+  </ion-card>
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button color="dark" (click)="cerrarCGasto()">
+      <ion-icon name="close" color="danger"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

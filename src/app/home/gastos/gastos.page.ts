@@ -10,11 +10,8 @@ import { LocalNotifications } from "@ionic-native/local-notifications/ngx";
   styleUrls: ["./gastos.page.scss"]
 })
 export class GastosPage {
-  //variables que se utilizan en el HTML
-  nombreGasto;
-  valorGasto;
-  tipoGasto;
-  url;
+  mostrar: boolean = false;
+  id: string;
   //variable suma es la suma de los gastos
   suma;
   //Aquí se guarda el array con todos los gastos
@@ -29,27 +26,20 @@ export class GastosPage {
   constructor(
     private FB: FBservicesService,
     public actionSheetController: ActionSheetController,
-    public popoverController: PopoverController,
-    private router: Router,
-    private localNotifications: LocalNotifications
-  ) {
-    
-  }
-  regisGasto() {
-    this.FB.crearGasto(this.valorGasto, this.nombreGasto, this.tipoGasto);
-    this.valorGasto = "";
-    this.nombreGasto = "";
-    this.tipoGasto = "";
-    // this.url = "";
-  }
+    private router: Router
+  ) {}
+
   async presentActionSheet() {
     //Controla las opciones que puede hacer en ingresos
     const actionSheet = await this.actionSheetController.create({
-      header: "Que deseas hacer en gastos...",
+      header: "Que deseas hacer en gastos",
       buttons: [
         {
           text: "Añadir gasto",
-          icon: "add"
+          icon: "add",
+          handler: () => {
+            this.router.navigate(["registrar-gasto"]);
+          }
         },
         {
           text: "Cancelar",
@@ -63,5 +53,15 @@ export class GastosPage {
     });
     await actionSheet.present();
   }
- 
+  pruebaEliminar(dato: string) {
+    console.log(dato);
+    
+    this.id = dato;
+    this.mostrar = true;
+  }
+  eventoEliminar() {
+    console.log(this.id);
+    this.FB.eventoEliminarGasto(this.id);
+    this.mostrar = !this.mostrar;
+  }
 }

@@ -13,6 +13,9 @@ export class IngresosPage {
   // slideOpts = {
   //   effect: "flip"
   // };
+  nombreAEliminar;
+  mostrar: boolean = false;
+  id:string;
 
   constructor(
     private FB: FBservicesService,
@@ -32,11 +35,12 @@ export class IngresosPage {
           handler: () => {
             this.router.navigate(["registrar-i"]);
           }
-        },{
-          text:"Eliminar ingreso",
+        },
+        {
+          text: "Eliminar ingreso",
           icon: "remove",
-          handler: () =>{
-            console.log("ME OPRIMISTE PARA ELIMINAR UN INGRESO")
+          handler: () => {
+            console.log("ME OPRIMISTE PARA ELIMINAR UN INGRESO");
           }
         },
         {
@@ -50,5 +54,15 @@ export class IngresosPage {
       ]
     });
     await actionSheet.present();
+  }
+  pruebaEliminar(dato: string) {
+    console.log(dato);
+    this.id = dato;
+    this.mostrar = true;
+  }
+  eventoEliminar() {
+    console.log(this.id);    
+    this.FB.eventoEliminarIngreso(this.id);
+    this.mostrar = !this.mostrar;
   }
 }

@@ -1,63 +1,36 @@
-<ion-header>
+<ion-header color="warning">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
+      <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
-    <ion-title>gastos</ion-title>
+    <ion-title>Estos son tus gastos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
   <ion-label>Dinero gastado:</ion-label>
   <ion-title id="titleDinero">{{FB.totalGasto| currency:'USD':true: '2.0-0'}}</ion-title>
-  <ion-card id="form-regis-gasto">
-    <ion-label>Nombre:</ion-label>
-    <ion-input type="text" placeholder="Nombre para gasto" [(ngModel)]="nombreGasto"></ion-input>
-    <ion-label>Cantidad:</ion-label>
-    <ion-input type="number" placeholder="Dinero que se gasta" [(ngModel)]="valorGasto"></ion-input>
-    <ion-label>Tipo de gasto:</ion-label>
-    <!-- Default Segment -->
-    <ion-segment (ionChange)="segmentChanged($event)" color="danger" [(ngModel)]="tipoGasto">
-      <ion-segment-button value="efectivo">
-        <ion-label color="danger">
-          <ion-icon slot="start" name="cash"></ion-icon> Efectivo
-        </ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="electronico">
-        <ion-label color="danger">
-          <ion-icon slot="start" name="laptop"></ion-icon> Electronico
-        </ion-label>
-      </ion-segment-button>
-    </ion-segment>
-    <ion-item>
-      <ion-label>Periodicidad:</ion-label>
-      <ion-datetime display-format="DDDD MMM D, YYYY" min="2015" max="2020"></ion-datetime>
-    </ion-item>
 
-    <ion-button id="btnRegistrar" (click)="regisGasto()">
-      Añadir gasto
-    </ion-button>
-  </ion-card>
-  <ion-label>Estos son tus gastos:</ion-label>
-  <!-- Opción 1 -->
+  <ion-label>Estos son tus gastos: <ion-badge slot="end"  color="medium">{{FB.numeroGastos}}</ion-badge></ion-label>
+  <!-- Opción 1 - Muestra en tarjetas todos los gastos del usuario -->
   <ion-row>
     <ion-col>
-      <ion-card class="card" *ngFor="let lista of FB.listG">
+      <ion-card class="card" *ngFor="let lista of FB.listG" (click)="pruebaEliminar(lista.nombre)">
         <h3>{{lista.nombre}}</h3>
         <h1>{{lista.valor | currency:'USD':true: '2.0-0'}}</h1>
         <h3>{{lista.tipo}}</h3>
       </ion-card>
     </ion-col>
   </ion-row>
-  <!-- fab placed to the top end
-  <ion-fab vertical="top" horizontal="end" slot="fixed">
-    <ion-fab-button>
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab> -->
+  <!-- botón para mostrar las opciones de la pagina gastos -->
   <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="presentActionSheet()">
     <ion-fab-button color="dark">
-      <ion-icon name="apps" color="warning"></ion-icon>
+      <ion-icon name="options" color="warning"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+  <ion-fab *ngIf="mostrar" vertical="bottom" horizontal="end" slot="fixed"  (click)="eventoEliminar()">
+      <ion-fab-button color="danger">
+        <ion-icon name="trash" color="light"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
 </ion-content>

@@ -12,10 +12,10 @@ export class IngresosEPage {
   descripcion;
   constructor(public FB: FBservicesService) {}
 
-  crearIngresoExtra() {
-    this.FB.crearIngresoExtra(this.nombre, this.valor, this.descripcion);
-    this.nombre="";
-    this.valor="";
-    this.descripcion="";
-  }
+  // crearIngresoExtra() {
+  //   this.FB.crearIngresoExtra(this.nombre, this.valor, this.descripcion);
+  //   this.nombre="";
+  //   this.valor="";
+  //   this.descripcion="";
+  // }
 }

@@ -10,6 +10,8 @@ import { Console } from "@angular/core/src/console";
 })
 export class FBservicesService {
   usuarioUid: string;
+  numeroIngresos;
+  numeroGastos;
   //Variables para ingresos
   public listI: any[] = [];
   valorT: any[] = [];
@@ -150,30 +152,30 @@ export class FBservicesService {
     this.toastConfirmarDataIngresada();
     this.registerNotification();
   }
-  crearIngresoExtra(valorIngresoE, nombreIE, descripcionIE) {
-    this.usuarioUid = firebase.auth().currentUser.uid;
-    console.log(this.usuarioUid);
-    firebase
-      .database()
-      .ref("usuarios/" + this.usuarioUid + "/ingresosExtra/" + nombreIE)
-      .set({
-        nombre: nombreIE,
-        valor: valorIngresoE,
-        descripcion: descripcionIE
-      });
-  }
-  crearGastoExtra(valorGastoE, nombreGE, descripcionGE) {
-    this.usuarioUid = firebase.auth().currentUser.uid;
-    console.log(this.usuarioUid);
-    firebase
-      .database()
-      .ref("usuarios/" + this.usuarioUid + "/gastosExtra/" + nombreGE)
-      .set({
-        nombre: nombreGE,
-        valor: valorGastoE,
-        descripcion: descripcionGE
-      });
-  }
+  // crearIngresoExtra(valorIngresoE, nombreIE, descripcionIE) {
+  //   this.usuarioUid = firebase.auth().currentUser.uid;
+  //   console.log(this.usuarioUid);
+  //   firebase
+  //     .database()
+  //     .ref("usuarios/" + this.usuarioUid + "/ingresosExtra/" + nombreIE)
+  //     .set({
+  //       nombre: nombreIE,
+  //       valor: valorIngresoE,
+  //       descripcion: descripcionIE
+  //     });
+  // }
+  // crearGastoExtra(valorGastoE, nombreGE, descripcionGE) {
+  //   this.usuarioUid = firebase.auth().currentUser.uid;
+  //   console.log(this.usuarioUid);
+  //   firebase
+  //     .database()
+  //     .ref("usuarios/" + this.usuarioUid + "/gastosExtra/" + nombreGE)
+  //     .set({
+  //       nombre: nombreGE,
+  //       valor: valorGastoE,
+  //       descripcion: descripcionGE
+  //     });
+  // }
   cerrarSesion() {
     firebase.auth().signOut();
   }
@@ -201,6 +203,7 @@ export class FBservicesService {
         this.listI = [];
         snapshot.forEach(element => {
           this.listI.push(element.val());
+          this.numeroIngresos = this.listI.length;
         });
         this.sumarI(this.listI);
       });
@@ -223,6 +226,7 @@ export class FBservicesService {
         this.listG = [];
         snapshot.forEach(element => {
           this.listG.push(element.val());
+          this.numeroGastos = this.listG.length;
         });
         this.sumarG(this.listG);
       });
@@ -272,5 +276,39 @@ export class FBservicesService {
       text: `descripcion pikachu`,
       trigger: { at: new Date(new Date().getTime() + this.milisegundos) }
     });
+  }
+  eventoEliminarIngreso(nombreAEliminar) {
+    console.log("Esto es lo que se eliminara---->", nombreAEliminar);
+    try {
+      firebase
+      .database()
+      .ref("usuarios/" + this.usuarioUid + "/ingresos/" + nombreAEliminar)
+      .remove();
+      this.toastElimino();
+    } catch (error) {
+      console.log("No se pudo eliminar: ", error)
+    }
+    
+  }
+  eventoEliminarGasto(nombreAEliminar) {
+    console.log("Esto es lo que se eliminara---->", nombreAEliminar);
+    try {
+      firebase
+      .database()
+      .ref("usuarios/" + this.usuarioUid + "/gastos/" + nombreAEliminar)
+      .remove();
+      this.toastElimino();
+    } catch (error) {
+      console.log("No se pudo eliminar: ", error)
+    }
+    
+  }
+  async toastElimino() {
+    const toast = await this.toastController.create({
+      message: "Se ha eliminado correctamente",
+      color: "danger",
+      duration: 7000
+    });
+    toast.present();
   }
 }

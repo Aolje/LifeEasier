@@ -8,14 +8,7 @@ ion-content {
     --background: linear-gradient(to bottom, #2b2908 2%, #948620 81%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 
-    ion-segment-button{
-        margin: 10px;
-        border-radius: 10px;
-
-    }
-    ion-segment{
-        margin-bottom: 10px;
-    }
+    
     .card{
         padding: 0px;
         text-align:  center;
@@ -23,22 +16,15 @@ ion-content {
         background: #292929;
        
     }
-    .sli{
-        text-align:  center;
-        padding-bottom:20px; 
-        color: white;
-        background: #292929;
-    }
+    // .sli{
+    //     text-align:  center;
+    //     padding-bottom:20px; 
+    //     color: white;
+    //     background: #292929;
+    // }
     .card h3{
         color: #cc801e;
-    }
-    #btnRegistrar{
-        
-        margin: 0px;
-        --background: rgba(232, 248, 91, 0.651);
-        color:  rgb(0, 0, 0);
-        width: 100%;
-    }
+    }    
     ion-label{
         color: white;
         width: 100%;
@@ -50,9 +36,5 @@ ion-content {
         color: rgb(255, 148, 27);
     }
 
-    #form-regis-gasto{
-        padding: 10px;
-        color: white;
-        background: #a5a311;
-    }
+    
 }
