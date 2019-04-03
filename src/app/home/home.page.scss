@@ -1,9 +1,18 @@
 
 ion-content{
-
-  .card-divider:hover {
-    color: darkolivegreen;
+  .my-custom-menu {
+    --width: 500px;
   }
+  --background:linear-gradient(to top, #00294f, #004a72, #006e8e, #00939f, #00b7a6);
+  
+  h3{
+    color: white;
+    font-size: 3vw;
+    font-family:Arial, Helvetica, sans-serif;
+   
+  }
+  
+  
   
   .card-divider1,
   .card-divider2,
@@ -38,7 +47,7 @@ ion-content{
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-image: url("/../../assets/img/icon-money.png");
-    border: solid black 3px;
+    box-shadow: #082900 5px 10px 5px 0px;
   }
   
   .card-divider2 {
@@ -46,8 +55,7 @@ ion-content{
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-image: url("/../../assets/img/perdida.png");
-    border: solid black 3px;
-  
+    box-shadow: #2b2a0a 5px 10px 5px 0px;
   }
   
   .card-divider3 {
@@ -73,6 +81,10 @@ ion-content{
     color: rgb(212, 163, 0);
     text-shadow: 1px 1px #000000;
   }
+  .saldoEgresosP {
+    color: rgb(79, 158, 6);
+    text-shadow: 1px 1px 5px #000000;
+  }
   
   .saldoIngresosExtra {
     color: rgb(39, 64, 209);
@@ -87,9 +99,9 @@ ion-content{
   .div-divider {    
     margin-top: 40px;
     font-size: 8vw;
-    height: 100%;
+    height: 40%;
     width: 100%;
-    text-align: center;
+    text-align: center; 
   }
   .my-custom-menu {
     --width: 500px;
@@ -104,6 +116,16 @@ ion-content{
   .saldoTotal {
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #ff6600;
-    text-shadow: 1px 1px #1a1101;
+    text-shadow: 5px 10px 15px #1a1101;
+  }
+  ion-card-content{
+    color: black;
+  }
+}
+ion-footer{
+  .btn-cerrarSesion{
+    position: bottom;
+    width: 100%;
+    margin: 0;
   }
 }

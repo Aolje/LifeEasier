@@ -38,4 +38,8 @@ export class HomePage {
     this.menu.enable(true, 'custom');
     this.menu.open('custom');
   }
+  openFirst() {
+    this.menu.enable(true, 'first');
+    this.menu.open('first');
+  }
 }

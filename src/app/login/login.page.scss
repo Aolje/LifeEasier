@@ -1,48 +1,68 @@
-#lista-login {
-    position: right;
-    width: 100%;
-    height: 100%;
-    padding: 2%;
-    background: rgb(83, 83, 83);
-    box-shadow: 0px 0px 10px rgb(45, 247, 179);
-    display: inline-block;
-    border-radius: 10px;
-}
-#lista-login img{
-    margin: auto;
-}
-#item-login {
-    margin-bottom: 10px;
-}
+ion-content {
 
-#button-login, #button2-login {
-    border-radius: 10px;
-    width: 100%;
-    box-shadow: 0px 0px 3px rgb(215, 255, 209);
-    margin: 0;
-    margin-bottom: 5px;
+    .img-logo {
+        width: 100%;
+        height: 20%;
+    }
 
+    #lista-login {
+        margin: auto;
+        width: 95%;
+        padding: 2%;
+        background: rgb(83, 83, 83);
+        box-shadow: 0px 0px 10px rgb(45, 247, 179);
+        border-radius: 10px;
+    }
+
+
+    #input-login {
+        border-radius: 10px;
+        border-bottom: solid rgb(45, 247, 179) 2px;
+        margin-bottom: 20px;
+    }
+
+    #button-login
+     {
+        border-radius: 10px;
+        width: 100%;
+        margin: 0;
+        margin-bottom: 5px;
+    }
+    #button2-login{
+        width: 98%;
+        margin: 1%;
+    }
+
+    .div-button2-login,
+    .div-button3-login{
+        width: 50%;
+        display: inline-block;
+        position: left;
+    }
+h1{
+    text-align: center;
+    color:rgb(45, 247, 179);
 }
+    // #button2-login {
+    //     margin: 2.5%;
+    //     border-radius: 10px;
+    //     width: 45%;
+    //     box-shadow: 0px 0px 15px rgb(1, 131, 1);
+    // }
 
-// #button2-login {
-//     margin: 2.5%;
-//     border-radius: 10px;
-//     width: 45%;
-//     box-shadow: 0px 0px 15px rgb(1, 131, 1);
-// }
+    #img-boton-login {
+        margin: auto;
+        display: inline;
+        position: right;
+    }
 
-#img-boton-login {
-    margin: auto;
-    display: inline;
-    position: right;
-}
+    #registrarme-login {
+        padding: 10px;
+        width: 45%;
+    }
 
-#registrarme-login {
-    padding: 10px;
-    width: 45%;
-}
-
-#recuperarPass-login {
-    padding: 10px;
-    width: 45%;
+    #recuperarPass-login {
+        padding: 10px;
+        width: 45%;
+    }
 }

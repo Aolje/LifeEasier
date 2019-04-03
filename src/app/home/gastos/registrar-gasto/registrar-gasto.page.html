@@ -1,6 +1,7 @@
 <ion-content color="dark">
-  
+
   <ion-card id="form-regis-gasto">
+    <ion-title> Crea tu gasto</ion-title>
     <ion-label id="l1">Dale un nombre al gasto:</ion-label>
     <ion-input id="input-gasto" type="text" placeholder="Escribe aquí el nombre del gasto." [(ngModel)]="nombreGasto">
       <ion-icon name="pricetag" color="warning"></ion-icon>
@@ -9,18 +10,19 @@
     <ion-input id="input-gasto" type="number" placeholder="Escribe aquí cuanto vas a gastar." [(ngModel)]="valorGasto">
       <ion-icon name="logo-usd" color="warning"></ion-icon>
     </ion-input>
-    <ion-label id="l3">El gasto es: <p>(seleccione una opción)</p>
+    <ion-label id="l3">El gasto es en: <p>(seleccione una opción)</p>
     </ion-label>
     <!-- Default Segment -->
-    <ion-segment (ionChange)="segmentChanged($event)" color="danger" [(ngModel)]="tipoGasto">
-      <ion-segment-button value="efectivo">
+    <ion-segment class="segment-content" (ionChange)="segmentChanged($event)" color="success" [(ngModel)]="tipoGasto">
+      <ion-segment-button class="segment-button" value="efectivo">
         <ion-label color="dark">
-          <ion-icon slot="start" name="cash"></ion-icon> En Efectivo
+          <ion-icon slot="start" name="cash"></ion-icon> Efectivo
         </ion-label>
       </ion-segment-button>
-      <ion-segment-button value="electronico">
+      <ion-icon slot="start" name="code"></ion-icon>
+      <ion-segment-button class="segment-button" value="electronico">
         <ion-label color="dark">
-          <ion-icon slot="start" name="laptop"></ion-icon> Por internet
+          <ion-icon slot="start" name="laptop"></ion-icon> Internet
         </ion-label>
       </ion-segment-button>
     </ion-segment>

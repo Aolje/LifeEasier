@@ -39,18 +39,9 @@ export class RegistrarGastoPage {
       this.nombreGasto = "";
       this.tipoGasto = "";
       this.router.navigate(["gastos"]);
-      this.toastCreado();
     }
   }
-  async toastCreado() {
-    const toast = await this.toastController.create({
-      message: "☑  Has creado un Gasto.",
-      color: "success",
-      cssClass: [],
-      duration: 3000
-    });
-    toast.present();
-  }
+  
   async toastFaltanCampos() {
     const toast = await this.toastController.create({
       message: "Por favor diligencia los campos",

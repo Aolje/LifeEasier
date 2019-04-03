@@ -37,13 +37,6 @@ export class IngresosPage {
           }
         },
         {
-          text: "Eliminar ingreso",
-          icon: "remove",
-          handler: () => {
-            console.log("ME OPRIMISTE PARA ELIMINAR UN INGRESO");
-          }
-        },
-        {
           text: "Cancelar",
           icon: "close",
           role: "cancel",

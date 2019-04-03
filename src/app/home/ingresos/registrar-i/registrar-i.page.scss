@@ -1,15 +1,16 @@
 ion-content {
-    ion-title{
+    ion-title {
         text-align: center;
-        color: white;
-        font-family: 'Courier New', Courier, monospace;
-        width: 100%;        
+        color: rgb(0, 0, 0);
+        font-family: 'Lucida Grande', Geneva, Verdana, sans-serif;
+        width: 100%;
     }
+
     #form-regis-ingreso {
         margin-top: 100px;
         padding: 10px;
         color: white;
-        background: #078b3c;
+        background: linear-gradient(to bottom, #4af00f, #37c20b, #269506, #176b03, #094400);
     }
 
     ion-label {
@@ -22,7 +23,8 @@ ion-content {
         color: rgb(255, 255, 255);
         width: 100%;
     }
-    #input-ingreso{
+
+    #input-ingreso {
         color: #032b13;
         --background: #55fa97;
         border-radius: 5px;

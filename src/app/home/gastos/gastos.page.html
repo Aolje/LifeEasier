@@ -8,29 +8,46 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-label>Dinero gastado:</ion-label>
-  <ion-title id="titleDinero">{{FB.totalGasto| currency:'USD':true: '2.0-0'}}</ion-title>
+  <div class="div-gastos">
+    <ion-label class="lblGastado">GASTOS</ion-label>
+    <ion-title id="titleDinero">{{FB.totalGasto| currency:'USD':true: '2.0-0'}}</ion-title>
+  </div>
+  <div class="div-pagado">
+    <ion-label class="lblpagado">Dinero pagado:</ion-label>
+    <ion-title id="titleDineroPagado">{{FB.totalGastoP| currency:'USD':true: '2.0-0'}}</ion-title>
+  </div>
+  <div class="div-pagar">
+    <ion-label class="lblpagar">Falta Por Pagar:</ion-label>
+    <ion-title id="titleDineroPendienteP">{{FB.totalGasto - FB.totalGastoP | currency:'USD':true: '2.0-0'}}</ion-title>
+  </div>
 
-  <ion-label>Estos son tus gastos: <ion-badge slot="end"  color="medium">{{FB.numeroGastos}}</ion-badge></ion-label>
+  <ion-label>Estos son tus gastos: <ion-badge slot="end" color="medium">{{FB.numeroGastos}}</ion-badge>
+  </ion-label>
   <!-- Opción 1 - Muestra en tarjetas todos los gastos del usuario -->
   <ion-row>
     <ion-col>
       <ion-card class="card" *ngFor="let lista of FB.listG" (click)="pruebaEliminar(lista.nombre)">
         <h3>{{lista.nombre}}</h3>
         <h1>{{lista.valor | currency:'USD':true: '2.0-0'}}</h1>
-        <h3>{{lista.tipo}}</h3>
+        <h2>{{lista.tipo}}</h2>
       </ion-card>
     </ion-col>
   </ion-row>
   <!-- botón para mostrar las opciones de la pagina gastos -->
   <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="presentActionSheet()">
     <ion-fab-button color="dark">
-      <ion-icon name="options" color="warning"></ion-icon>
+      <ion-icon name="add" color="warning"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  <ion-fab *ngIf="mostrar" vertical="bottom" horizontal="end" slot="fixed"  (click)="eventoEliminar()">
-      <ion-fab-button color="danger">
-        <ion-icon name="trash" color="light"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
+  <ion-fab *ngIf="mostrar" vertical="bottom" horizontal="end" slot="fixed" (click)="eventoEliminar()">
+    <ion-fab-button color="danger">
+      <ion-icon name="trash" color="light"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab *ngIf="mostrar" vertical="bottom" horizontal="start" slot="fixed" (click)="pagarGasto()">
+    <ion-fab-button color="light">
+      <ion-icon name="rocket" color="dark"></ion-icon>
+    </ion-fab-button>
+    <ion-label>Ya pague</ion-label>
+  </ion-fab>
 </ion-content>

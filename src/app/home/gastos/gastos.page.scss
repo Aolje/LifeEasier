@@ -1,40 +1,84 @@
-ion-content {
-    --background: #89853c;
-    /* Old browsers */
-    --background: -moz-linear-gradient(top, #575314 2%, #948620 81%);
-    /* FF3.6-15 */
-    --background: -webkit-linear-gradient(top, #a79f0e 2%, #948620 81%);
-    /* Chrome10-25,Safari5.1-6 */
-    --background: linear-gradient(to bottom, #2b2908 2%, #948620 81%);
-    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+ion-toolbar {
+    --color: black;
+    --background: #ffe900;
+}
 
-    
-    .card{
-        padding: 0px;
-        text-align:  center;
-        color: white;
-        background: #292929;
-       
+ion-content {
+    --background: linear-gradient(to bottom, #ffe900, #ecd400, #dac000, #c7ac00, #b49900, #a9800c, #9b6914, #895419, #6f3a20, #4e2520, #2b1618, #000000);
+
+    .div-gastos {
+        text-align: center;
     }
+
+    .div-pagar,
+    .div-pagado {
+        text-align: center;
+        position: left;
+        display: inline-block;
+        width: 50%;
+    }
+
+
+    .lblpagado,
+    .lblpagar,.lblGastado {
+        color: #000000;
+
+    }
+
+    #titleDineroPendienteP {
+        color: #0074a1;
+    }
+    #titleDineroPagado{
+        color: #00a136;
+    }
+
+    #titleDineroPagado,
+    #titleDineroPendienteP {
+        font-size: 6vw;
+    }
+
+    .div-pagar {
+        font-size: 3vw;
+    }
+
+    .div-pagado {
+        font-size: 3vw;
+    }
+
+    .card {
+        padding: 0px;
+        text-align: center;
+        color: white;
+        background: #29292963;
+    }
+
     // .sli{
     //     text-align:  center;
     //     padding-bottom:20px; 
     //     color: white;
     //     background: #292929;
     // }
-    .card h3{
-        color: #cc801e;
-    }    
-    ion-label{
+    .card h3 {
+        color: #ff7b00;
+        text-shadow: #000000 1px 2px;
+    }
+
+    .card h2 {
+        color: #b69400;
+        text-shadow: #4d3200 1px 1px;
+    }
+
+    ion-label {
         color: white;
         width: 100%;
     }
-    #titleDinero{
+
+    #titleDinero {
         font-size: 10vw;
         text-align: center;
-        text-shadow: 1px 1px #032b13;
-        color: rgb(255, 148, 27);
+        text-shadow: 1px 1px #ffffff;
+        color: rgb(14, 12, 0);
     }
 
-    
+
 }

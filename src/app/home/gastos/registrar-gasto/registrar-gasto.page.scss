@@ -1,9 +1,15 @@
 ion-content {
+    ion-title{
+        text-align: center;
+        color: rgb(0, 0, 0);
+        font-family: 'Lucida Grande',  Geneva, Verdana, sans-serif;
+        width: 100%;        
+    }
     #form-regis-gasto {
         margin-top: 100px;
         padding: 10px;
-        color: white;
-        background: #a5a311;
+        color: black;
+        background: linear-gradient(to top, #f0840f, #f39e01, #f4b801, #f1d218, #ebeb32);
     }
 
     #btnRegistrar {
@@ -13,12 +19,15 @@ ion-content {
         width: 100%;
     }
 
-    ion-segment-button {
-        margin: 10px;
+    .segment-button {
+        margin: 2%;
+        width: 48%;
         border-radius: 10px;
+        border: double #4238009c 4px;
     }
 
-    ion-segment {
+    .segment-content {
+        width: 100%;
         margin-bottom: 10px;
     }
 
@@ -28,7 +37,8 @@ ion-content {
         border-radius: 5px;
         margin-bottom: 20px;
     }
-    #l3 p{
+
+    #l3 p {
         color: #505800;
         font-size: 10px;
         font-family: 'Courier New', Courier, monospace;

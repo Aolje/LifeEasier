@@ -1,12 +1,16 @@
+<ion-router-outlet main></ion-router-outlet>
 <ion-header color="primary">
-  <ion-toolbar color="primary">
-    <ion-title>Bienvenido {{FB.usuario}}</ion-title>
-  </ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-menu-button (click)="openFirst()"></ion-menu-button>
+    <ion-toolbar color="primary">
+      <ion-title>Bienvenido {{FB.usuario}}</ion-title>
+    </ion-toolbar>
+  </ion-buttons>
 </ion-header>
-<ion-content color="light">
+<ion-content>
   <ion-card-content>
     <div class="div-divider-total" id="div-divider-total">
-      <H3>PUEDES GASTAR LIBREMENTE: </H3>
+      <H3>PUEDES GASTAR LIBREMENTE</H3>
       <label class="saldoTotal">{{ (FB.totalIngreso-FB.totalGasto) | currency:'USD':true: '2.0-0' }}</label>
     </div>
   </ion-card-content>
@@ -39,10 +43,24 @@
     </div>
   </ion-card-content> -->
 </ion-content>
-<ion-footer color="success">
-  <ion-toolbar>
-    <ion-button (click)="cerrarSesion()">
-      Cerrar Sesion
+<ion-menu side="start" menuId="first">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Hola, {{FB.usuario}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-card>
+      <ion-card-title color="warning">Te damos la bienvenida, {{FB.usuario}}.</ion-card-title>
+      <ion-card-content>
+        Esta aplicación esta pensada para ayudarte a registrar tus ingresos y gastos economicos, y así tener un poco más
+        arreglada tu vida, anotando y gestionando lo que puedes y no puedes gastar de tu dinero.
+      </ion-card-content>
+    </ion-card>
+  </ion-content>
+  <ion-footer color="dark">
+    <ion-button color="light" class="btn-cerrarSesion" (click)="cerrarSesion()">
+      <ion-icon color="danger" slot="start" name="log-out"></ion-icon>Cerrar Sesión
     </ion-button>
-  </ion-toolbar>
-</ion-footer>
+  </ion-footer>
+</ion-menu>

@@ -1,9 +1,20 @@
+ion-toolbar{
+    --color: black;
+    --background:#63fd8b;
+}
+
+
 ion-content{
+    --background: linear-gradient(to bottom, #63fd8b, #55ee77, #47df62, #37d04d, #26c137, #1aad31, #0d9a2a, #008724, #056a27, #0f4e25, #14331f, #141a16);
     .card-dinero{
         text-align:  center;
         color: white;
-        background: #292929;
-       
+        background: #292929;       
+    }
+    .lblIngresos{
+        width: 100%;
+        text-align: center;
+        font-size: 4vw;
     }
     // Los slider estan ocultoss
     // .sli{
@@ -16,9 +27,7 @@ ion-content{
         color: #ffce00;
     }
     
-    .card-dinero{
-        border: solid rgb(0, 255, 0) 2px;
-    }
+    
     
     ion-label{
         width: 100%;

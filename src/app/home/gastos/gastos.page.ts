@@ -64,4 +64,9 @@ export class GastosPage {
     this.FB.eventoEliminarGasto(this.id);
     this.mostrar = !this.mostrar;
   }
+  
+  pagarGasto(){    
+    this.FB.pagar(this.id);   
+  }
+
 }

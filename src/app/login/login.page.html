@@ -1,22 +1,29 @@
+<ion-content color="dark">
+  <ion-img class="img-logo" src="assets/img/logo.png"></ion-img>
+  <div class="div-form">
+    <ion-list id="lista-login">
+        <h1>Iniciar sesión</h1>
 
-<ion-content padding color="dark">
-  <ion-list id="lista-login">
-    <img src="assets/img/logo.png" >
-    <ion-item id="item-login">
-      <ion-input id="input-login" type="email" placeholder="Email" [(ngModel)]="email">
-        <ion-icon name="contact"></ion-icon>
+      <ion-input id="input-login" type="email" placeholder="Correo electrónico" [(ngModel)]="email">
+        <ion-icon slot="end" color="dark" name="person"></ion-icon>
       </ion-input>
-    </ion-item>
-    <ion-item id="item-login">
+
       <ion-input id="input-login" type="password" placeholder="Contraseña" [(ngModel)]="password">
-        <ion-icon name="key"></ion-icon>
+        <ion-icon slot="start" color="dark" name="key"></ion-icon>
       </ion-input>
-    </ion-item>
-    <ion-button id="button-login" color="success" (click)="irPaginaHome()">
-        <!-- <ion-spinner name="bubbles"></ion-spinner> -->
-        Entrar</ion-button>
-        <ion-button id="button2-login" color="primary" (click)="irPaginaRegistro()">Registrarme</ion-button>
-        <ion-button id="button2-login" color="warning" (click)="recuperarCuenta()">Olvide mi contraseña</ion-button>
-        <!-- <img src="assets/img/icon-money.png" alt="">  -->
-  </ion-list>  
+
+      <ion-button id="button-login" color="success" (click)="irPaginaHome()">
+          <ion-icon color="dark" slot="start" name="log-in"></ion-icon>Entrar</ion-button>
+      <div class="div-button2-login">
+        <ion-button id="button2-login" color="primary" (click)="irPaginaRegistro()">
+            <ion-icon  color="dark" slot="start" name="person-add"></ion-icon>Crear cuenta</ion-button>
+      </div>
+      <div class="div-button3-login">
+        <ion-button color="warning"  id="button2-login" (click)="recuperarCuenta()">
+          <ion-icon color="dark" slot="start" name="refresh"></ion-icon>
+          Recuperar<br>contraseña</ion-button>
+      </div>
+      <!-- <img src="assets/img/icon-money.png" alt="">  -->
+    </ion-list>
+  </div>
 </ion-content>

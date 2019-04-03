@@ -7,8 +7,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding color="success">
-  <ion-label>Tus ingresos son de:</ion-label>
+<ion-content padding >
+  <ion-label class="lblIngresos">Tus ingresos son</ion-label>
   <ion-title id="titleDinero">{{FB.totalIngreso| currency:'USD':true: '2.0-0'}}</ion-title>
 
   <ion-label>Lista de ingresos: <ion-badge slot="end" color="medium">{{FB.numeroIngresos}}</ion-badge></ion-label>
@@ -32,7 +32,7 @@
 
   <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="presentActionSheet()">
     <ion-fab-button color="dark">
-      <ion-icon name="options" color="warning"></ion-icon>
+      <ion-icon name="add" color="warning"></ion-icon>
     </ion-fab-button>
   </ion-fab>
   <ion-fab *ngIf="mostrar" vertical="bottom" horizontal="end" slot="fixed"  (click)="eventoEliminar()">

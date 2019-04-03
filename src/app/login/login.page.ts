@@ -31,4 +31,5 @@ export class LoginPage {
   recuperarCuenta(){
     this.router.navigate(["recuperacion"]);
   }
+
 }

@@ -10,6 +10,7 @@ import { Console } from "@angular/core/src/console";
 })
 export class FBservicesService {
   usuarioUid: string;
+  totalGastoP;
   numeroIngresos;
   numeroGastos;
   //Variables para ingresos
@@ -119,13 +120,26 @@ export class FBservicesService {
     });
     toast.present();
   }
-  async toastConfirmarDataIngresada() {
+  async toastCreadoG() {
     const toast = await this.toastController.create({
-      message: "Lo has agregado correctamente.",
-      duration: 5000
+      message: "☑  Has creado un Gasto.",
+      color: "success",
+      cssClass: [],
+      duration: 3000
     });
     toast.present();
   }
+  async toastCreadoI() {
+    const toast = await this.toastController.create({
+      message: "☑  Has creado un Gasto.",
+      color: "success",
+      cssClass: [],
+      duration: 3000
+    });
+    toast.present();
+  }
+  
+
   crearIngreso(valorIngreso, nombre) {
     this.usuarioUid = firebase.auth().currentUser.uid;
     console.log(this.usuarioUid);
@@ -136,6 +150,7 @@ export class FBservicesService {
         nombre: nombre,
         valor: valorIngreso
       });
+      this.toastCreadoI();
   }
 
   crearGasto(valorGasto, nombreGasto, tipoGasto) {
@@ -149,7 +164,7 @@ export class FBservicesService {
         valor: valorGasto,
         tipo: tipoGasto
       });
-    this.toastConfirmarDataIngresada();
+    this.toastCreadoG();
     this.registerNotification();
   }
   // crearIngresoExtra(valorIngresoE, nombreIE, descripcionIE) {
@@ -186,6 +201,7 @@ export class FBservicesService {
         this.router.navigate(["home"]);
         this.usuarioUid = firebase.auth().currentUser.uid;
         this.mostrarNombre();
+        this.mostrarTodoGastosPagados();
         console.log("usuario:", this.usuarioUid);
         console.log("total --Ingreso--- ", this.mostrarTodosRealTime());
         console.log("total --Gasto--- ", this.mostrarTodoGastos());
@@ -281,27 +297,25 @@ export class FBservicesService {
     console.log("Esto es lo que se eliminara---->", nombreAEliminar);
     try {
       firebase
-      .database()
-      .ref("usuarios/" + this.usuarioUid + "/ingresos/" + nombreAEliminar)
-      .remove();
+        .database()
+        .ref("usuarios/" + this.usuarioUid + "/ingresos/" + nombreAEliminar)
+        .remove();
       this.toastElimino();
     } catch (error) {
-      console.log("No se pudo eliminar: ", error)
+      console.log("No se pudo eliminar: ", error);
     }
-    
   }
   eventoEliminarGasto(nombreAEliminar) {
     console.log("Esto es lo que se eliminara---->", nombreAEliminar);
     try {
       firebase
-      .database()
-      .ref("usuarios/" + this.usuarioUid + "/gastos/" + nombreAEliminar)
-      .remove();
+        .database()
+        .ref("usuarios/" + this.usuarioUid + "/gastos/" + nombreAEliminar)
+        .remove();
       this.toastElimino();
     } catch (error) {
-      console.log("No se pudo eliminar: ", error)
+      console.log("No se pudo eliminar: ", error);
     }
-    
   }
   async toastElimino() {
     const toast = await this.toastController.create({
@@ -310,5 +324,41 @@ export class FBservicesService {
       duration: 7000
     });
     toast.present();
+  }
+  pagar(nombreGastoPagado) {
+    this.usuarioUid = firebase.auth().currentUser.uid;
+    console.log(this.usuarioUid);
+    firebase.database().ref().child("usuarios/" + this.usuarioUid + "/gastos/" + nombreGastoPagado).update({
+        estado: 1
+      });
+      console.log('estado actualizado a 1');
+
+  
+}
+
+  mostrarTodoGastosPagados() {
+    // this.usuarioUid = firebase.auth().currentUser.uid;
+    firebase
+      .database()
+      .ref("usuarios/" + this.usuarioUid + "/gastos")
+      .on("value", snapshot => {
+        this.listG = [];
+        snapshot.forEach(element => {
+          this.listG.push(element.val());
+          this.numeroGastos = this.listG.length;
+        });
+        this.sumarGastosPagados(this.listG);
+      });
+  }
+  sumarGastosPagados(listG) {
+    this.totalGastoP = 0;
+    for (let index = 0; index < listG.length; index++) {
+        if(listG[index].estado == 1){
+          const element = listG[index].valor;
+          this.valG = element;
+          this.totalGastoP = this.totalGastoP + this.valG;
+        }  
+      console.log('total par ---- ' , this.totalGastoP);
+    }
   }
 }
