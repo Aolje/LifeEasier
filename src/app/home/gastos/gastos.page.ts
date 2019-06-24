@@ -3,6 +3,7 @@ import { ActionSheetController, PopoverController } from "@ionic/angular";
 import { Component } from "@angular/core";
 import { FBservicesService } from "src/app/fbservices.service";
 import { LocalNotifications } from "@ionic-native/local-notifications/ngx";
+import { NgStyle } from '@angular/common';
 
 @Component({
   selector: "app-gastos",
@@ -10,6 +11,7 @@ import { LocalNotifications } from "@ionic-native/local-notifications/ngx";
   styleUrls: ["./gastos.page.scss"]
 })
 export class GastosPage {
+  // mostrar: VisibilityState = "visible";
   mostrar: boolean = false;
   id: string;
   //variable suma es la suma de los gastos
@@ -27,7 +29,7 @@ export class GastosPage {
     private FB: FBservicesService,
     public actionSheetController: ActionSheetController,
     private router: Router
-  ) {}
+  ) { }
 
   async presentActionSheet() {
     //Controla las opciones que puede hacer en ingresos
@@ -54,19 +56,18 @@ export class GastosPage {
     await actionSheet.present();
   }
   pruebaEliminar(dato: string) {
-    console.log(dato);
-    
     this.id = dato;
-    this.mostrar = true;
+    console.log(this.id);
+    this.mostrar = !this.mostrar;   
   }
   eventoEliminar() {
-    console.log(this.id);
-    this.FB.eventoEliminarGasto(this.id);
-    this.mostrar = !this.mostrar;
+    this.FB.gastoEliminado(this.id);
   }
-  
-  pagarGasto(){    
-    this.FB.pagar(this.id);   
+  eliminarGastoEliminado(){
+    this.FB.eventoEliminarGasto(this.id);
+  }
+  pagarGasto() {
+    this.FB.pagar(this.id);
   }
 
 }

@@ -13,7 +13,6 @@ export class IngresosPage {
   // slideOpts = {
   //   effect: "flip"
   // };
-  nombreAEliminar;
   mostrar: boolean = false;
   id:string;
 
@@ -24,6 +23,7 @@ export class IngresosPage {
     private router: Router
   ) {}
 
+//muestra las opciones de la vista INGRESOS
   async presentActionSheet() {
     //Controla las opciones que puede hacer en ingresos
     const actionSheet = await this.actionSheetController.create({
