@@ -37,7 +37,7 @@
           <ion-badge slot="end" color="medium">{{FB.numeroGastos}}</ion-badge>
         </h2>
         <ion-col class="colCard">
-          <ion-card class="card" *ngFor="let lista of FB.listG" (click)="pruebaEliminar(lista.nombre)">
+          <ion-card class="card" *ngFor="let lista of FB.listG" (click)="accion(lista.nombre)">
             <h3>{{lista.nombre}}</h3>
             <h1>{{lista.valor | currency:'USD':true: '2.0-0'}}</h1>
             <h2>{{lista.tipo}}</h2>
@@ -51,7 +51,7 @@
           <ion-badge slot="end" color="medium">{{FB.numeroGastosPagos}}</ion-badge>
         </h2>
         <ion-col class="colCard">
-          <ion-card class="card" *ngFor="let lista of FB.listGPagados" (click)="pruebaEliminar(lista.nombre)">
+          <ion-card class="card" *ngFor="let lista of FB.listGPagados" (click)="accion(lista.nombre)">
               <h3>{{lista.nombre}}</h3>
               <h1>{{lista.valor | currency:'USD':true: '2.0-0'}}</h1>
               <h2>{{lista.tipo}}</h2>
@@ -65,7 +65,7 @@
           <ion-badge slot="end" color="medium">{{FB.numeroGastosEliminados}}</ion-badge>
         </h2>
         <ion-col class="colCard">
-          <ion-card class="card" *ngFor="let lista of FB.listGEliminados" (click)="pruebaEliminar(lista.nombre)">
+          <ion-card class="card" *ngFor="let lista of FB.listGEliminados" (click)="accion(lista.nombre)">
             <h3>{{lista.nombre}}</h3>
             <h1>{{lista.valor | currency:'USD':true: '2.0-0'}}</h1>
             <h2>{{lista.tipo}}</h2>

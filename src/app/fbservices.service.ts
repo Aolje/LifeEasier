@@ -3,7 +3,8 @@ import { Router } from "@angular/router";
 import * as firebase from "firebase";
 import { ToastController, AlertController } from "@ionic/angular";
 import { LocalNotifications } from "@ionic-native/local-notifications/ngx";
-import { Console } from "@angular/core/src/console";
+
+
 
 @Injectable({
   providedIn: "root"
@@ -32,7 +33,7 @@ export class FBservicesService {
   // Variable usuario
   usuario: string;
   public totalTodo;
-  
+
   fecha: Date;
   milisegundos = 5000;
 
@@ -70,7 +71,7 @@ export class FBservicesService {
       .signInWithEmailAndPassword(email, password)
       .then(() => {
         console.log("Se inicio correctamente");
-        console.log("ususuario:", firebase.auth().currentUser);
+        console.log("suario:", firebase.auth().currentUser);
         console.log("token ususuario:", firebase.auth().currentUser.uid);
         //this.router.navigate(["home"]);
       })
@@ -297,6 +298,9 @@ export class FBservicesService {
       console.log("esto es el total de gastos" + this.totalGasto)
     }
   }
+  encontrarGastoPagado(listGPagados) {
+
+  }
   mostrarTodoGastos() {
     // this.usuarioUid = firebase.auth().currentUser.uid;
     firebase
@@ -306,14 +310,17 @@ export class FBservicesService {
         this.listG = [];
         this.listGEliminados = [];
         this.listGPagados = [];
+        this.numeroGastos = 0;
+        this.numeroGastosPagos = 0;
+        this.numeroGastosEliminados = 0;
         snapshot.forEach(element => {
           if (element.val().eliminado == 0 && element.val().estado == 0) {
             this.listG.push(element.val());
             this.numeroGastos = this.listG.length;
-          } else if (element.val().estado == 1) {
+          } else if (element.val().estado == 1 && element.val().eliminado == 0) {
             this.listGPagados.push(element.val());
             this.numeroGastosPagos = this.listGPagados.length;
-          } else {
+          } else if (element.val().eliminado == 1) {
             this.listGEliminados.push(element.val());
             this.numeroGastosEliminados = this.listGEliminados.length;
           }
@@ -322,24 +329,51 @@ export class FBservicesService {
       });
   }
   gastoEliminado(nombreAEliminar) {
-    firebase
-      .database()
-      .ref("usuarios/" + this.usuarioUid + "/gastos/" + nombreAEliminar)
-      .update({
-        eliminado: 1,
-      });
-    this.usuarioUid = firebase.auth().currentUser.uid;
-  }
-  eventoEliminarGasto(nombreAEliminar) {
-    console.log("Esto es lo que se eliminara---->", nombreAEliminar);
-    try {
-      firebase
-        .database()
-        .ref("usuarios/" + this.usuarioUid + "/gastos/" + nombreAEliminar)
-        .remove();
-      this.toastElimino();
-    } catch (error) {
-      console.log("No se pudo eliminar: ", error);
+    for (let index = 0; index < this.listGEliminados.length; index++) {
+      const element = this.listGEliminados[index].nombre;
+      if (element == nombreAEliminar) {
+        firebase
+          .database()
+          .ref("usuarios/" + this.usuarioUid + "/gastos/" + nombreAEliminar)
+          .remove();
+        console.log("Este gasto ( " + element + " ) se elimino.")
+        this.usuarioUid = firebase.auth().currentUser.uid;
+      } else {
+        console.log("No esta en la lista de Eliminados")
+      }
+      console.log("Sale del for de la lista de Eliminados")
+    }
+    for (let index = 0; index < this.listGPagados.length; index++) {
+      const element = this.listGPagados[index].nombre;
+      if (element == nombreAEliminar) {
+        firebase
+          .database()
+          .ref("usuarios/" + this.usuarioUid + "/gastos/" + nombreAEliminar)
+          .update({
+            eliminado: 1,
+          });
+        console.log("Este gasto pagado ( " + element + " ) se cambio a estado eliminado = 1.")
+        this.usuarioUid = firebase.auth().currentUser.uid;
+      } else {
+        console.log("No esta en la lista de pagados.")
+      }
+      console.log("Sale del for de la lista de pagados.►►►►►")
+    }
+    for (let index = 0; index < this.listG.length; index++) {
+      const element = this.listG[index].nombre;
+      if (element == nombreAEliminar) {
+        firebase
+          .database()
+          .ref("usuarios/" + this.usuarioUid + "/gastos/" + nombreAEliminar)
+          .update({
+            eliminado: 1,
+          });
+        console.log("Este gasto ( " + element + " ) se cambio a estado eliminado = 1.");
+        this.usuarioUid = firebase.auth().currentUser.uid;
+      } else {
+        console.log("No esta en la lista de gastos")
+      }
+      console.log("sale del for de la lista de gastos.►►►►►")
     }
   }
   pagar(nombreGastoPagado) {

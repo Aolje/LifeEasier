@@ -13,7 +13,9 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot({_forceStatusbarPadding:true}), AppRoutingModule],
+  imports: [BrowserModule,
+    IonicModule.forRoot({_forceStatusbarPadding : true}),
+    AppRoutingModule],
   providers: [
     StatusBar,
     SplashScreen,
@@ -22,4 +24,4 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

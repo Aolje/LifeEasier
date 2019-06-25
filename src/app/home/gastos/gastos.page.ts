@@ -55,19 +55,19 @@ export class GastosPage {
     });
     await actionSheet.present();
   }
-  pruebaEliminar(dato: string) {
+  accion(dato: string) {
     this.id = dato;
     console.log(this.id);
     this.mostrar = !this.mostrar;   
   }
   eventoEliminar() {
     this.FB.gastoEliminado(this.id);
+    this.mostrar = !this.mostrar;   
   }
-  eliminarGastoEliminado(){
-    this.FB.eventoEliminarGasto(this.id);
-  }
+  
   pagarGasto() {
     this.FB.pagar(this.id);
+    this.mostrar = !this.mostrar;   
   }
 
 }
